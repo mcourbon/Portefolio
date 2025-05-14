@@ -224,9 +224,11 @@
 
     <section id="contact" class="contact-section">
         <h2>Contact</h2>
-        <form class="contact-form" action="mailto:courbon.marcantoine@gmail.com" method="POST" enctype="text/plain">
+        <form class="contact-form" action="https://formsubmit.co/courbon.marcantoine@gmail.com" method="POST">
             <input type="text" name="name" placeholder="Nom" required>
             <input type="email" name="email" placeholder="Email" required>
+            <input type="text" name="_honey" style="display:none"> <!-- Anti Spam -->
+            <input type="hidden" name="_captcha" value="false"> <!-- Disabled captcha -->
             <textarea name="message" placeholder="Message" rows="5"></textarea>
             <button type="submit">Envoyer</button>
         </form>
