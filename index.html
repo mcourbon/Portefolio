@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mcourbon</title>
+    <link rel="stylesheet" href="styles.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Lato&family=Raleway&family=Roboto&family=Bebas+Neue&family=Poppins&family=Oswald&family=Muli&family=Montserrat&family=Open+Sans&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <nav class="navbar">
+        <ul>
+            <li><a href="#about">À propos</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#projects">Projets</a></li>
+            <li><a href="#technologies">Technologies</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+    <button class="burger" onclick="toggleMenu()">☰</button>
+    <header>
+        <h1 class="fade-in">Marc-Antoine Courbon</h1>
+        <p class="slide-in-from-bot">Développeur Web / Créateur 3D</p>
+        <div class="scroll-text scroll-left chevron-left-slide-in-from-top">
+            <div class="chevron-group">
+                <div class="chevron"></div>
+                <div class="chevron"></div>
+                <div class="chevron"></div>
+            </div>
+        </div>
+        <div class="scroll-text scroll-right chevron-right-slide-in-from-top">
+            <div class="chevron-group">
+                <div class="chevron"></div>
+                <div class="chevron"></div>
+                <div class="chevron"></div>
+            </div>
+        </div>
+        <canvas id="three-canvas"></canvas>
+        <div class="wave-container">
+            <svg width="100%" height="100%" id="svg" viewBox="0 0 1440 200" xmlns="http://www.w3.org/2000/svg"
+                class="transition duration-300 ease-in-out delay-150">
+                <defs>
+                    <linearGradient id="waveGradient" x1="0" y1="1" x2="0" y2="0">
+                        <stop offset="0%" stop-color="#e6ccb2" />
+                        <stop offset="100%" stop-color="#d6a77a" />
+                    </linearGradient>
+                </defs>
+                <path
+                    d="M 0,200 L 0,100 C 92.65071770334927,83.26315789473682 185.30143540669854,66.52631578947367 271,73 C 356.69856459330146,79.47368421052633 435.444976076555,109.15789473684214 535,105 C 634.555023923445,100.84210526315786 754.9186602870813,62.84210526315786 860,76 C 965.0813397129187,89.15789473684214 1054.8803827751196,153.47368421052633 1149,166 C 1243.1196172248804,178.52631578947367 1341.55980861244,139.26315789473682 1440,100 L 1440,200 L 0,200 Z"
+                    fill="url(#waveGradient)" fill-opacity="1"
+                    class="transition-all duration-300 ease-in-out delay-150 path-0"></path>
+            </svg>
+        </div>
+    </header>
+
+    <section id="about">
+        <h2>À propos de moi</h2>
+        <p>Je suis développeur frontend freelance basé sur Lyon, spécialisé en interfaces modernes et en expériences web
+            3D.<br><br>
+            Après un parcours en autoentrepreneuriat, j’ai intégré l’école 42, et c’est là que j’ai pu affiner mon
+            approche : écrire du code propre, penser responsive, et surtout, rendre l’expérience fluide.<br><br>
+            Je viens du monde musical, et ce besoin de création, je le retrouve dans le code. Tout est affaire de rythme
+            et d’équilibre. J’aime transformer une idée en une interface vivante, intuitive et marquante, avec du style,
+            mais toujours au service de la fonctionnalité.<br><br>
+            Entrepreneur et friand d’apprentissage, mes expériences passées m’ont appris à m’adapter rapidement et à
+            garder une vraie curiosité technique. J’aime travailler en équipe, partager les idées, et coordonner les
+            efforts pour faire avancer un projet commun. Pour moi, le développement web, c’est autant une passion qu’un
+            terrain d’expression.
+        </p>
+    </section>
+
+    <div class="wave-container-about">
+        <svg width="100%" height="100%" id="svg-about" viewBox="0 0 1440 200" xmlns="http://www.w3.org/2000/svg"
+            class="transition duration-300 ease-in-out delay-150">
+            <defs>
+                <linearGradient id="waveGradientAbout" x1="0" y1="1" x2="0" y2="0">
+                    <stop offset="0%" stop-color="#000000" />
+                    <stop offset="100%" stop-color="#2f2f2f" />
+                </linearGradient>
+            </defs>
+            <path
+                d="M 0,200 L 0,100 C 92.65071770334927,83.26315789473682 185.30143540669854,66.52631578947367 271,73 C 356.69856459330146,79.47368421052633 435.444976076555,109.15789473684214 535,105 C 634.555023923445,100.84210526315786 754.9186602870813,62.84210526315786 860,76 C 965.0813397129187,89.15789473684214 1054.8803827751196,153.47368421052633 1149,166 C 1243.1196172248804,178.52631578947367 1341.55980861244,139.26315789473682 1440,100 L 1440,200 L 0,200 Z"
+                fill="url(#waveGradientAbout)" fill-opacity="1"
+                class="transition-all duration-300 ease-in-out delay-150 path-0"></path>
+        </svg>
+    </div>
+
+    <section id="services">
+        <h2>Services</h2>
+        <ul class="services-list">
+            <li>
+                <h3>Développement sur‑mesure</h3>
+                <p>Sites vitrines ou boutiques e‑commerce, avec ou sans CMS</p>
+            </li>
+            <li>
+                <h3>Intégration front‑end pixel‑perfect</h3>
+                <p>HTML / CSS / JS — Three.js, Babylon.js pour des interfaces interactives</p>
+            </li>
+            <li>
+                <h3>Expériences 3D optimisées</h3>
+                <p>Animations et assets optimisés pour capter l’attention sans alourdir la page</p>
+            </li>
+            <li>
+                <h3>Maintenance et évolutions</h3>
+                <p>Ajout de contenu, nouvelles fonctionnalités, optimisation des performances</p>
+            </li>
+            <li>
+                <h3>Collaboration UX / UI</h3>
+                <p>Travail conjoint avec des designers pour une expérience utilisateur optimale</p>
+            </li>
+            <li>
+                <h3>Optimisation SEO</h3>
+                <p>Amélioration du référencement naturel de votre site pour une meilleure visibilité sur les moteurs de
+                    recherche</p>
+            </li>
+        </ul>
+        <div class="wave-container-services">
+            <svg width="100%" height="100%" id="svg-services" viewBox="0 0 1440 200" xmlns="http://www.w3.org/2000/svg"
+                class="transition duration-300 ease-in-out delay-150">
+                <defs>
+                    <linearGradient id="waveGradientServices" x1="0" y1="1" x2="0" y2="0">
+                        <stop offset="0%" stop-color="#e6ccb2" />
+                        <stop offset="100%" stop-color="#d6a77a" />
+                    </linearGradient>
+                </defs>
+                <path d="M0,200 L0,100 C92.65,83.26 185.30,66.53 271,73
+                        C356.70,79.47 435.44,109.16 535,105
+                        C634.56,100.84 754.92,62.84 860,76
+                        C965.08,89.16 1054.88,153.47 1149,166
+                        C1243.12,178.53 1341.56,139.26 1440,100 L1440,200 Z" fill="url(#waveGradientServices)"
+                    fill-opacity="1" class="transition-all duration-300 ease-in-out delay-150" />
+            </svg>
+        </div>
+    </section>
+
+
+    <section id="projects">
+        <h2>Mes Projets</h2>
+        <div class="project-container">
+            <div class="project-button" onclick="window.open('https://github.com/mcourbon/ThreeJS_3D_Pong', '_blank')">
+                <img src="assets/pong.png" alt="Pong 3D Project" class="project-image">
+            </div>
+            <div class="project-button" onclick="window.open('https://github.com/Axiaaa/ft_transcendance', '_blank')">
+                <img src="assets/transcendance.png" alt="Transcendance Project" class="project-image">
+            </div>
+            <div class="project-button" onclick="window.open('https://rangements-chaussures.com', '_blank')">
+                <img src="assets/rangements-chaussures.png" alt="Projet 3" class="project-image">
+            </div>
+        </div>
+    </section>
+
+    <div class="wave-container-projects">
+        <svg width="100%" height="100%" id="svg-projects" viewBox="0 0 1440 200" xmlns="http://www.w3.org/2000/svg"
+            class="transition duration-300 ease-in-out delay-150">
+            <defs>
+                <linearGradient id="waveGradientProjects" x1="0" y1="1" x2="0" y2="0">
+                    <stop offset="0%" stop-color="#000000" />
+                    <stop offset="100%" stop-color="#2f2f2f" />
+                </linearGradient>
+            </defs>
+            <path
+                d="M 0,200 L 0,100 C 92.65071770334927,83.26315789473682 185.30143540669854,66.52631578947367 271,73 C 356.69856459330146,79.47368421052633 435.444976076555,109.15789473684214 535,105 C 634.555023923445,100.84210526315786 754.9186602870813,62.84210526315786 860,76 C 965.0813397129187,89.15789473684214 1054.8803827751196,153.47368421052633 1149,166 C 1243.1196172248804,178.52631578947367 1341.55980861244,139.26315789473682 1440,100 L 1440,200 L 0,200 Z"
+                fill="url(#waveGradientProjects)" fill-opacity="1"
+                class="transition-all duration-300 ease-in-out delay-150 path-0"></path>
+        </svg>
+    </div>
+
+    <section id="technologies">
+        <h2>Technologies Utilisées</h2>
+        <div class="tech-grid">
+            <a href="https://developer.mozilla.org/fr/docs/Web/HTML" class="tech-card" target="_blank">
+                <img src="assets/html-5.svg" alt="HTML">
+                <p>HTML</p>
+            </a>
+            <a href="https://developer.mozilla.org/fr/docs/Web/CSS" class="tech-card" target="_blank">
+                <img src="assets/css-3.svg" alt="CSS">
+                <p>CSS</p>
+            </a>
+            <a href="https://developer.mozilla.org/fr/docs/Web/JavaScript" class="tech-card" target="_blank">
+                <img src="assets/javascript.svg" alt="JavaScript">
+                <p>JavaScript</p>
+            </a>
+            <a href="https://threejs.org/" class="tech-card" target="_blank">
+                <img src="assets/three.svg" alt="Three.js">
+                <p>Three.js</p>
+            </a>
+            <a href="https://www.babylonjs.com/" class="tech-card" target="_blank">
+                <img src="assets/babylon.svg" alt="Babylon.js">
+                <p>Babylon.js</p>
+            </a>
+            <a href="https://en.wikipedia.org/wiki/C_(programming_language)" class="tech-card" target="_blank">
+                <img src="assets/c.svg" alt="C">
+                <p>C</p>
+            </a>
+            <a href="https://en.wikipedia.org/wiki/C%2B%2B" class="tech-card" target="_blank">
+                <img src="assets/cpp.svg" alt="C++">
+                <p>C++</p>
+            </a>
+            <a href="https://git-scm.com/" class="tech-card" target="_blank">
+                <img src="assets/git.svg" alt="Git">
+                <p>Git</p>
+            </a>
+        </div>
+        <div class="wave-container-technologies">
+            <svg width="100%" height="100%" id="svg-technologies" viewBox="0 0 1440 200"
+                xmlns="http://www.w3.org/2000/svg" class="transition duration-300 ease-in-out delay-150">
+                <defs>
+                    <linearGradient id="waveGradientTechnologies" x1="0" y1="1" x2="0" y2="0">
+                        <stop offset="0%" stop-color="#e6ccb2" />
+                        <stop offset="100%" stop-color="#d6a77a" />
+                    </linearGradient>
+                </defs>
+                <path
+                    d="M 0,200 L 0,100 C 92.65071770334927,83.26315789473682 185.30143540669854,66.52631578947367 271,73 C 356.69856459330146,79.47368421052633 435.444976076555,109.15789473684214 535,105 C 634.555023923445,100.84210526315786 754.9186602870813,62.84210526315786 860,76 C 965.0813397129187,89.15789473684214 1054.8803827751196,153.47368421052633 1149,166 C 1243.1196172248804,178.52631578947367 1341.55980861244,139.26315789473682 1440,100 L 1440,200 L 0,200 Z"
+                    fill="url(#waveGradientTechnologies)" fill-opacity="1"
+                    class="transition-all duration-300 ease-in-out delay-150 path-0"></path>
+            </svg>
+        </div>
+    </section>
+
+    <section id="contact" class="contact-section">
+        <h2>Contact</h2>
+        <form class="contact-form" action="mailto:courbon.marcantoine@gmail.com" method="POST" enctype="text/plain">
+            <input type="text" name="name" placeholder="Nom" required>
+            <input type="email" name="email" placeholder="Email" required>
+            <textarea name="message" placeholder="Message" rows="5"></textarea>
+            <button type="submit">Envoyer</button>
+        </form>
+    </section>
+
+    <script type="module" src="main.js"></script>
+    <script>
+        function toggleMenu() {
+            const navbar = document.querySelector('.navbar');
+            navbar.classList.toggle('show');
+        }
+        document.querySelectorAll('.navbar a').forEach(link => {
+            link.addEventListener('click', () => {
+                const navList = document.querySelector('.navbar ');
+                if (navList.classList.contains('show')) {
+                    navList.classList.remove('show');
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
