@@ -669,9 +669,11 @@ h6 {
         grid-template-columns: repeat(2, 1fr);
         /* 2 column */
     }
+
     #about {
         margin: 4rem 1.25rem;
     }
+
     .contact-section {
         margin: 0 1.25rem;
     }
@@ -714,5 +716,12 @@ h6 {
         font-size: 1.2rem;
         top: 1rem;
         right: 1rem;
+    }
+}
+
+@supports (-webkit-touch-callout: none) {
+    #about h2 {
+        text-shadow: 0 0.1rem 0.2rem rgba(0, 0, 0, 0.4);
+        -webkit-text-stroke: 0.2px rgba(255, 255, 255, 0.05);
     }
 }
