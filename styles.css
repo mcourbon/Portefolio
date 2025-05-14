@@ -67,7 +67,7 @@ html {
     right: 2rem;
     background: transparent;
     font-size: 2rem;
-    color: #e6ccb2;
+    color: #909090;
     border: none;
     z-index: 101;
 }
@@ -668,6 +668,12 @@ h6 {
     .project-container {
         grid-template-columns: repeat(2, 1fr);
         /* 2 column */
+    }
+    #about {
+        margin: 4rem 1.25rem;
+    }
+    .contact-section {
+        margin: 0 1.25rem;
     }
 }
 
