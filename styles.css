@@ -327,11 +327,7 @@ h6 {
 #about h2 {
     font-size: clamp(0.6rem, 10vw, 3rem);
     text-align: center;
-    background: #000000;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    color: transparent;
+    color: #000000;
     text-shadow: 0 0.1rem 0.2rem rgba(0, 0, 0, 0.7);
     margin-top: 0;
 }
@@ -369,13 +365,8 @@ h6 {
 #services h2 {
     font-size: clamp(0.6rem, 10vw, 3rem);
     text-align: center;
-    background: #e6ccb2;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    color: transparent;
+    color: #e6ccb2;
     text-shadow: 0 0.1rem 0.2rem rgba(230, 204, 178, 0.7);
-    margin-bottom: 3rem;
     margin: 0 0 4rem 0;
 }
 
@@ -445,11 +436,7 @@ h6 {
 #projects h2 {
     font-size: clamp(0.6rem, 10vw, 3rem);
     text-align: center;
-    background: #000000;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    color: transparent;
+    color: #000000;
     text-shadow: 0 0.1rem 0.2rem rgba(0, 0, 0, 0.7);
     margin-bottom: 3rem;
 }
@@ -512,13 +499,8 @@ h6 {
 #technologies h2 {
     font-size: clamp(0.6rem, 10vw, 3rem);
     text-align: center;
-    background: #e6ccb2;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    color: transparent;
+    color: #e6ccb2;
     text-shadow: 0 0.1rem 0.2rem rgba(230, 204, 178, 0.7);
-    margin-bottom: 3rem;
     margin: 0 0 4rem 0;
 }
 
@@ -601,11 +583,7 @@ h6 {
 .contact-section h2 {
     font-size: clamp(0.6rem, 10vw, 3rem);
     text-align: center;
-    background: #000000;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    color: transparent;
+    color: #000000;
     text-shadow: 0 0.1rem 0.2rem rgba(0, 0, 0, 0.7);
 }
 
