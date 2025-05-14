@@ -311,7 +311,7 @@ h6 {
     background: #b08f6f;
     border-radius: 1.25rem;
     margin: 4rem auto;
-    padding: clamp(0.5rem, 5vw, 10rem) clamp(0.5rem, 3vw, 2rem);
+    padding: clamp(2rem, 5vw, 10rem) clamp(1.5rem, 3vw, 2rem);
     max-width: 900px;
     color: #e6ccb2;
     box-shadow: 0 0.5rem 1.875rem rgba(0, 0, 0, 0.3);
@@ -401,6 +401,7 @@ h6 {
     color: #e6ccb2;
     cursor: default;
     transition: transform 0.25s ease-in-out, box-shadow 0.3s ease, filter 0.3s ease;
+    margin: 0 clamp(1.25rem, 5vw, 3rem);
 }
 
 .services-list li:hover {
@@ -456,8 +457,8 @@ h6 {
 .project-container {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 1.25rem;
-    padding: clamp(0.5rem, 5vw, 3rem) clamp(0.5rem, 3vw, 2rem);
+    gap: 2rem;
+    padding: clamp(0.5rem, 5vw, 3rem) clamp(1.25rem, 3vw, 2rem);
     justify-items: center;
 }
 
@@ -529,9 +530,9 @@ h6 {
 .tech-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-    gap: 2rem;
+    gap: clamp(1.5rem, 5vw, 2rem);
     margin: 2rem 0;
-    padding: clamp(0.5rem, 5vw, 3rem) clamp(0.5rem, 3vw, 2rem);
+    padding: clamp(0.5rem, 5vw, 3rem) clamp(1.25rem, 3vw, 2rem);
     max-width: 1000px;
     margin-left: auto;
     margin-right: auto;
@@ -681,7 +682,7 @@ h6 {
 @media (max-width: 130px) {
     .tech-grid {
         grid-template-columns: repeat(auto-fit, minmax(30px, 1fr));
-        /* Sur très petits écrans, les cartes auront une largeur minimale de 30px */
+        /* On very little screens, the cards will have a 30px maximal width */
     }
 
     .tech-card img {
