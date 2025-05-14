@@ -332,7 +332,7 @@ h6 {
     -webkit-text-fill-color: transparent;
     background-clip: text;
     color: transparent;
-    text-shadow: 0 0.2rem 0.3125rem rgba(0, 0, 0, 0.7);
+    text-shadow: 0 0.1rem 0.2rem rgba(0, 0, 0, 0.7);
     margin-top: 0;
 }
 
@@ -374,7 +374,7 @@ h6 {
     -webkit-text-fill-color: transparent;
     background-clip: text;
     color: transparent;
-    text-shadow: 0 0.2rem 0.3125rem rgba(230, 204, 178, 0.7);
+    text-shadow: 0 0.1rem 0.2rem rgba(230, 204, 178, 0.7);
     margin-bottom: 3rem;
     margin: 0 0 4rem 0;
 }
@@ -450,7 +450,7 @@ h6 {
     -webkit-text-fill-color: transparent;
     background-clip: text;
     color: transparent;
-    text-shadow: 0 0.2rem 0.3125rem rgba(0, 0, 0, 0.7);
+    text-shadow: 0 0.1rem 0.2rem rgba(0, 0, 0, 0.7);
     margin-bottom: 3rem;
 }
 
@@ -517,7 +517,7 @@ h6 {
     -webkit-text-fill-color: transparent;
     background-clip: text;
     color: transparent;
-    text-shadow: 0 0.2rem 0.3125rem rgba(230, 204, 178, 0.7);
+    text-shadow: 0 0.1rem 0.2rem rgba(230, 204, 178, 0.7);
     margin-bottom: 3rem;
     margin: 0 0 4rem 0;
 }
@@ -606,7 +606,7 @@ h6 {
     -webkit-text-fill-color: transparent;
     background-clip: text;
     color: transparent;
-    text-shadow: 0 0.2rem 0.3125rem rgba(0, 0, 0, 0.7);
+    text-shadow: 0 0.1rem 0.2rem rgba(0, 0, 0, 0.7);
 }
 
 .contact-form input,
@@ -721,6 +721,26 @@ h6 {
 
 @supports (-webkit-touch-callout: none) {
     #about h2 {
+        text-shadow: 0 0.1rem 0.2rem rgba(0, 0, 0, 0.4);
+        -webkit-text-stroke: 0.2px rgba(255, 255, 255, 0.05);
+    }
+
+    #services h2 {
+        text-shadow: 0 0.1rem 0.2rem rgba(0, 0, 0, 0.4);
+        -webkit-text-stroke: 0.2px rgba(255, 255, 255, 0.05);
+    }
+
+    #projects h2 {
+        text-shadow: 0 0.1rem 0.2rem rgba(0, 0, 0, 0.4);
+        -webkit-text-stroke: 0.2px rgba(255, 255, 255, 0.05);
+    }
+
+    #technologies h2 {
+        text-shadow: 0 0.1rem 0.2rem rgba(0, 0, 0, 0.4);
+        -webkit-text-stroke: 0.2px rgba(255, 255, 255, 0.05);
+    }
+
+    #contact h2 {
         text-shadow: 0 0.1rem 0.2rem rgba(0, 0, 0, 0.4);
         -webkit-text-stroke: 0.2px rgba(255, 255, 255, 0.05);
     }
