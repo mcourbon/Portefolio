@@ -22,6 +22,14 @@
         </ul>
     </nav>
     <button class="burger" onclick="toggleMenu()">☰</button>
+
+    <div class="version-switcher">
+        <button class="version-btn" data-version="v1">V1</button>
+        <button class="version-btn" data-version="v2">V2</button>
+        <span class="version-tag" id="version-tag"></span>
+    </div>
+
+    <div id="v1-content" class="version-content">
     <header>
         <h1 class="fade-in">Marc-Antoine Courbon</h1>
         <p class="slide-in-from-bot">Développeur Web / Créateur 3D</p>
@@ -270,6 +278,69 @@
             <input type="hidden" name="_next" value="https://marcantoinecourbon.dev/">
         </form>
     </section>
+    </div>
+
+    <div id="v2-content" class="version-content">
+        <header class="hero-v2">
+            <div class="hero-v2-sky"></div>
+            <canvas id="hero-v2-canvas"></canvas>
+
+            <svg class="dune-layer dune-back" viewBox="0 0 1440 400" preserveAspectRatio="none">
+                <path d="M0,400 L0,260 C120,230 240,200 360,210 C480,220 600,260 720,250 C840,240 960,190 1080,195 C1200,200 1320,230 1440,215 L1440,400 Z"
+                    fill="#241726" />
+            </svg>
+
+            <svg class="dune-layer dune-mid" viewBox="0 0 1440 400" preserveAspectRatio="none">
+                <defs>
+                    <linearGradient id="duneMidGradient" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stop-color="#7a4030" />
+                        <stop offset="100%" stop-color="#5c2f2a" />
+                    </linearGradient>
+                </defs>
+                <path d="M0,400 L0,300 C160,260 320,340 480,300 C640,260 800,220 960,260 C1120,300 1280,340 1440,290 L1440,400 Z"
+                    fill="url(#duneMidGradient)" />
+            </svg>
+
+            <svg class="dune-layer dune-front" viewBox="0 0 1440 400" preserveAspectRatio="none">
+                <defs>
+                    <linearGradient id="duneFrontGradient" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stop-color="#e8a35c" />
+                        <stop offset="100%" stop-color="#c47a45" />
+                    </linearGradient>
+                </defs>
+                <path d="M0,400 L0,340 C100,300 220,220 340,240 C460,260 520,340 640,330 C760,320 820,240 940,230 C1060,220 1140,300 1260,320 C1340,335 1400,350 1440,340 L1440,400 Z"
+                    fill="url(#duneFrontGradient)" />
+                <path class="dune-ridge-line"
+                    d="M0,340 C100,300 220,220 340,240 C460,260 520,340 640,330 C760,320 820,240 940,230 C1060,220 1140,300 1260,320 C1340,335 1400,350 1440,340" />
+            </svg>
+
+            <canvas id="sand-canvas"></canvas>
+
+            <div class="hero-v2-content">
+                <h1 class="fade-in">Marc-Antoine Courbon</h1>
+                <p class="slide-in-from-bot">Développeur Web / Créateur 3D</p>
+            </div>
+
+            <div class="scroll-text scroll-left chevron-left-slide-in-from-top">
+                <div class="chevron-group">
+                    <div class="chevron"></div>
+                    <div class="chevron"></div>
+                    <div class="chevron"></div>
+                </div>
+            </div>
+            <div class="scroll-text scroll-right chevron-right-slide-in-from-top">
+                <div class="chevron-group">
+                    <div class="chevron"></div>
+                    <div class="chevron"></div>
+                    <div class="chevron"></div>
+                </div>
+            </div>
+        </header>
+
+        <section class="hero-v2-outro">
+            <p>La suite arrive bientôt — on construit ça ensemble.</p>
+        </section>
+    </div>
 
     <script type="module" src="main.js"></script>
     <script>
@@ -285,6 +356,33 @@
                 }
             });
         });
+
+        // Version switcher (V1 / V2) — bumped manually on each "final" push
+        const VERSIONS = { v1: 'v1.00', v2: 'v2.00' };
+
+        const v1Content = document.getElementById('v1-content');
+        const v2Content = document.getElementById('v2-content');
+        const versionButtons = document.querySelectorAll('.version-btn');
+        const versionTag = document.getElementById('version-tag');
+
+        let heroV2Loaded = false;
+        function setVersion(version) {
+            localStorage.setItem('portfolio-version', version);
+            v1Content.classList.toggle('active', version === 'v1');
+            v2Content.classList.toggle('active', version === 'v2');
+            versionButtons.forEach(btn => btn.classList.toggle('active', btn.dataset.version === version));
+            versionTag.textContent = VERSIONS[version];
+            if (version === 'v2' && !heroV2Loaded) {
+                heroV2Loaded = true;
+                import('./hero-v2.js');
+            }
+        }
+
+        versionButtons.forEach(btn => {
+            btn.addEventListener('click', () => setVersion(btn.dataset.version));
+        });
+
+        setVersion(localStorage.getItem('portfolio-version') || 'v1');
     </script>
 </body>
 
