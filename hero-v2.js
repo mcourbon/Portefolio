@@ -117,7 +117,7 @@ if (canvas) {
         targetY = ny * 0.3;
 
         duneLayers.forEach(({ el, amount }) => {
-            if (el) el.style.transform = `translate(${nx * amount}px, ${ny * amount * 0.4}px)`;
+            if (el) el.style.transform = `translateX(${nx * amount}px)`;
         });
     });
 
