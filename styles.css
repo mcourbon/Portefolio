@@ -274,7 +274,7 @@ html {
 /* Same stops as the hero sky gradient, sampled progressively deeper as you scroll */
 
 .stage-dusk-1 {
-    background: linear-gradient(180deg, #b0502f 0%, #7a3b3a 100%);
+    background: linear-gradient(180deg, #c47a45 0%, #7a3b3a 100%);
     color: #f6e6d2;
 }
 
