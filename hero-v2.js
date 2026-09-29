@@ -69,7 +69,7 @@ if (canvas) {
     moonGroup.position.set(2.4, 2.2, -3);
     scene.add(moonGroup);
 
-    // Twinkling starfield — three depth layers pulsing at different phases
+    // Twinkling starfield: three depth layers pulsing at different phases
     const starLayers = [];
     function createStarLayer(count, spreadX, spreadY, size, baseOpacity) {
         const positions = [];
@@ -101,7 +101,7 @@ if (canvas) {
     rimLight.position.set(-3, 2, 4);
     scene.add(rimLight);
 
-    // Mouse parallax — camera drifts gently, dune layers shift per depth
+    // Mouse parallax: camera drifts gently, dune layers shift per depth
     const duneLayers = [
         { el: document.querySelector('.dune-back'), amount: 6 },
         { el: document.querySelector('.dune-mid'), amount: 14 },
@@ -152,7 +152,7 @@ if (canvas) {
     });
 }
 
-// Drifting sand — lightweight 2D canvas layer, blown across the dunes by the wind
+// Drifting sand: lightweight 2D canvas layer, blown across the dunes by the wind
 const sandCanvas = document.getElementById('sand-canvas');
 
 if (sandCanvas) {

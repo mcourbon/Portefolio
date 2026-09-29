@@ -339,51 +339,71 @@
         </header>
 
         <section id="v2-about" class="v2-section stage-dusk-1">
-            <div class="sand-card">
-                <h2>À propos de moi</h2>
-                <p>Je suis développeur frontend freelance basé sur Lyon, spécialisé en interfaces modernes et en
-                    expériences web 3D.<br><br>
-                    Après un parcours en autoentrepreneuriat, j'ai intégré l'école 42, et c'est là que j'ai pu affiner
-                    mon approche : écrire du code propre, penser responsive, et surtout, rendre l'expérience
-                    fluide.<br><br>
-                    Je viens du monde musical, et ce besoin de création, je le retrouve dans le code. Tout est
-                    affaire de rythme et d'équilibre. J'aime transformer une idée en une interface vivante, intuitive
-                    et marquante, avec du style, mais toujours au service de la fonctionnalité.<br><br>
-                    Entrepreneur et friand d'apprentissage, mes expériences passées m'ont appris à m'adapter
-                    rapidement et à garder une vraie curiosité technique. J'aime travailler en équipe, partager les
-                    idées, et coordonner les efforts pour faire avancer un projet commun. Pour moi, le développement
-                    web, c'est autant une passion qu'un terrain d'expression.
-                </p>
-            </div>
+            <h2>Mon parcours</h2>
+            <ol class="timeline">
+                <li class="timeline-step">
+                    <span class="timeline-dot"></span>
+                    <div class="timeline-content">
+                        <span class="timeline-label">Musique</span>
+                        <p>La musique m'a appris le rythme et l'équilibre. C'est une sensibilité que je retrouve
+                            aujourd'hui dans ma façon de coder.</p>
+                    </div>
+                </li>
+                <li class="timeline-step">
+                    <span class="timeline-dot"></span>
+                    <div class="timeline-content">
+                        <span class="timeline-label">Autoentrepreneuriat</span>
+                        <p>Une première aventure entrepreneuriale, où j'ai appris à m'adapter vite et à cultiver une
+                            vraie curiosité technique.</p>
+                    </div>
+                </li>
+                <li class="timeline-step">
+                    <span class="timeline-dot"></span>
+                    <div class="timeline-content">
+                        <span class="timeline-label">École 42</span>
+                        <p>Là où j'ai affiné ma méthode : du code propre, une vraie attention au responsive, et le
+                            souci de rendre chaque expérience fluide.</p>
+                    </div>
+                </li>
+                <li class="timeline-step timeline-step-current">
+                    <span class="timeline-dot"></span>
+                    <div class="timeline-content">
+                        <span class="timeline-label">Aujourd'hui</span>
+                        <p>Développeur full-stack freelance basé à Lyon : frontend et backend (Next.js, Node.js),
+                            bases de données, paiements en ligne, SEO et expériences web 3D.</p>
+                    </div>
+                </li>
+            </ol>
         </section>
 
         <section id="v2-services" class="v2-section stage-dusk-2">
             <h2>Services</h2>
             <ul class="services-list-v2">
                 <li class="sand-card sand-card-tight">
-                    <h3>Développement sur‑mesure</h3>
-                    <p>Sites vitrines ou boutiques e‑commerce, avec ou sans CMS</p>
+                    <h3>Développement full‑stack</h3>
+                    <p>Sites et applications sur-mesure, du frontend au backend (Next.js, Node.js)</p>
                 </li>
                 <li class="sand-card sand-card-tight">
-                    <h3>Intégration front‑end pixel‑perfect</h3>
-                    <p>HTML / CSS / JS — Three.js, Babylon.js pour des interfaces interactives</p>
+                    <h3>Bases de données & API</h3>
+                    <p>Modélisation de données, API sécurisées, authentification</p>
                 </li>
                 <li class="sand-card sand-card-tight">
-                    <h3>Expériences 3D optimisées</h3>
-                    <p>Animations et assets optimisés pour capter l'attention sans alourdir la page</p>
+                    <h3>Paiement & e‑commerce</h3>
+                    <p>Intégration de solutions de paiement (Stripe, PayPal), gestion de commandes</p>
                 </li>
                 <li class="sand-card sand-card-tight">
-                    <h3>Maintenance et évolutions</h3>
-                    <p>Ajout de contenu, nouvelles fonctionnalités, optimisation des performances</p>
-                </li>
-                <li class="sand-card sand-card-tight">
-                    <h3>Collaboration UX / UI</h3>
-                    <p>Travail conjoint avec des designers pour une expérience utilisateur optimale</p>
+                    <h3>Expériences 3D interactives</h3>
+                    <p>Animations et assets optimisés (Three.js, Babylon.js) pour capter l'attention sans alourdir la
+                        page</p>
                 </li>
                 <li class="sand-card sand-card-tight">
                     <h3>Optimisation SEO</h3>
                     <p>Amélioration du référencement naturel de votre site pour une meilleure visibilité sur les
                         moteurs de recherche</p>
+                </li>
+                <li class="sand-card sand-card-tight">
+                    <h3>Maintenance et évolutions</h3>
+                    <p>Ajout de contenu, nouvelles fonctionnalités, optimisation des performances</p>
                 </li>
             </ul>
         </section>
@@ -483,15 +503,20 @@
 
         <section id="v2-contact" class="v2-section stage-night-3 contact-section-v2">
             <h2>Contact</h2>
-            <form class="contact-form" action="https://formsubmit.co/courbon.marcantoine@gmail.com" method="POST">
-                <input type="text" name="name" placeholder="Nom" required>
-                <input type="email" name="email" placeholder="Email" required>
-                <input type="text" name="_honey" style="display:none"> <!-- Anti Spam -->
-                <input type="hidden" name="_captcha" value="false"> <!-- Disabled captcha -->
-                <textarea name="message" placeholder="Message" rows="5"></textarea>
-                <button type="submit">Envoyer</button>
-                <input type="hidden" name="_next" value="https://marcantoinecourbon.dev/">
+            <p class="contact-tagline">Discutons de votre projet.</p>
+            <form class="contact-form contact-form-v2" id="contact-form-v2"
+                action="https://formsubmit.co/courbon.marcantoine@gmail.com" method="POST">
+                <div class="contact-fields" id="contact-fields">
+                    <input type="text" name="name" placeholder="Nom" required>
+                    <input type="email" name="email" placeholder="Email" required>
+                    <input type="text" name="_honey" style="display:none"> <!-- Anti Spam -->
+                    <input type="hidden" name="_captcha" value="false"> <!-- Disabled captcha -->
+                    <textarea name="message" placeholder="Message" rows="4"></textarea>
+                    <input type="hidden" name="_next" value="https://marcantoinecourbon.dev/">
+                </div>
+                <button type="submit" class="contact-beacon" id="contact-beacon">✉ Envoyer un message</button>
             </form>
+            <a class="contact-alt-link" href="https://github.com/mcourbon" target="_blank" rel="noopener">GitHub</a>
         </section>
     </div>
 
@@ -520,7 +545,7 @@
             });
         });
 
-        // Version switcher (V1 / V2) — bumped manually on each "final" push
+        // Version switcher (V1 / V2), bumped manually on each "final" push
         const VERSIONS = { v1: 'v1.00', v2: 'v2.00' };
 
         const v1Content = document.getElementById('v1-content');
