@@ -85,8 +85,18 @@ if (canvas) {
     const moonGroup = new THREE.Group();
     moonGroup.add(glowSprite);
     moonGroup.add(moon);
-    moonGroup.position.set(2.4, 2.2, -3);
+    moonGroup.position.set(0, 2.2, -3);
     scene.add(moonGroup);
+
+    // Keep the moon inside the visible frustum on narrow/portrait screens:
+    // its x was tuned for a wide desktop view and gets clipped on mobile
+    // if left fixed, since the orthographic frustum's width shrinks with
+    // the viewport's aspect ratio.
+    function updateMoonX() {
+        const halfWidth = frustumSize * aspect / 2;
+        moonGroup.position.x = Math.min(2.4, Math.max(0.6, halfWidth - 1.6));
+    }
+    updateMoonX();
 
     // Twinkling starfield: three depth layers pulsing at different phases
     const starLayers = [];
@@ -136,16 +146,22 @@ if (canvas) {
 
     let targetX = 0;
     let targetY = 0;
-    window.addEventListener('mousemove', (e) => {
-        const nx = e.clientX / window.innerWidth - 0.5;
-        const ny = e.clientY / window.innerHeight - 0.5;
-        targetX = nx * 0.6;
-        targetY = ny * 0.3;
+    // Touch devices have no real hover/mousemove: a tap fires a single
+    // synthetic mousemove, snapping the dunes sideways in one abrupt jump
+    // instead of gliding, and can expose the darker layer underneath. Only
+    // wire this up for pointers that can actually hover continuously.
+    if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+        window.addEventListener('mousemove', (e) => {
+            const nx = e.clientX / window.innerWidth - 0.5;
+            const ny = e.clientY / window.innerHeight - 0.5;
+            targetX = nx * 0.6;
+            targetY = ny * 0.3;
 
-        duneLayers.forEach(({ el, amount }) => {
-            if (el) el.style.transform = `translateX(${nx * amount}px)`;
+            duneLayers.forEach(({ el, amount }) => {
+                if (el) el.style.transform = `translateX(${nx * amount}px)`;
+            });
         });
-    });
+    }
 
     const clock = new THREE.Clock();
     function animate() {
@@ -179,6 +195,7 @@ if (canvas) {
         camera.bottom = -frustumSize / 2;
         camera.updateProjectionMatrix();
         renderer.setSize(window.innerWidth, window.innerHeight);
+        updateMoonX();
     });
 }
 

@@ -302,6 +302,14 @@ html {
     margin-top: -1px;
 }
 
+/* Extra nudge where a section follows the hero's SVG dune specifically:
+   the dune's bottom edge is flat there (not wavy), so a couple more
+   pixels of overlap is safe and helps hide any SVG/CSS rounding seam
+   that's more visible on some mobile pixel ratios. */
+#v2-about {
+    margin-top: -3px;
+}
+
 .v2-section::before {
     content: '';
     position: absolute;
@@ -337,8 +345,24 @@ html {
 }
 
 .stage-night-2 {
+    position: relative;
     background: linear-gradient(180deg, #201336 0%, #0d0a1f 100%);
     color: #e6ccb2;
+}
+
+.stage-night-2::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+        radial-gradient(1px 1px at 12% 30%, #f3e5c9 100%, transparent 100%),
+        radial-gradient(1px 1px at 35% 70%, #f3e5c9 100%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 58% 20%, #f3e5c9 100%, transparent 100%),
+        radial-gradient(1px 1px at 78% 55%, #f3e5c9 100%, transparent 100%),
+        radial-gradient(1px 1px at 90% 85%, #f3e5c9 100%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 20% 88%, #f3e5c9 100%, transparent 100%);
+    opacity: 0.22;
 }
 
 .stage-night-3 {
@@ -498,6 +522,13 @@ html {
     grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
     gap: clamp(1.5rem, 4vw, 2.25rem);
     max-width: 780px;
+}
+
+@media (max-width: 640px) {
+    #v2-technologies .tech-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+    }
 }
 
 #v2-technologies .tech-card {
@@ -845,6 +876,15 @@ html {
 
     .burger {
         display: block;
+    }
+
+    /* .navbar.v2-mode's pill styling (border-radius, tight padding) is
+       meant for the desktop floating nav only — without this reset it
+       overrides the full-screen mobile menu's shape/spacing above,
+       since it has higher specificity. */
+    .navbar.v2-mode {
+        border-radius: 0;
+        padding: 6rem 0 2rem;
     }
 }
 
