@@ -22,7 +22,11 @@
             <li><a href="#contact">Contact</a></li>
         </ul>
     </nav>
-    <button class="burger" onclick="toggleMenu()">☰</button>
+    <button class="burger" onclick="toggleMenu()" aria-label="Menu">
+        <span class="burger-bar"></span>
+        <span class="burger-bar"></span>
+        <span class="burger-bar"></span>
+    </button>
 
     <div class="version-switcher">
         <button class="version-btn" data-version="v1">V1</button>
@@ -658,8 +662,10 @@
     <script>
         function toggleMenu() {
             const navbar = document.querySelector('.navbar');
-            navbar.classList.toggle('show');
-            if (navbar.classList.contains('show')) {
+            const burger = document.querySelector('.burger');
+            const isOpen = navbar.classList.toggle('show');
+            burger.classList.toggle('active', isOpen);
+            if (isOpen) {
                 navbar.classList.remove('navbar-hidden');
             }
         }
@@ -668,6 +674,7 @@
                 const navList = document.querySelector('.navbar ');
                 if (navList.classList.contains('show')) {
                     navList.classList.remove('show');
+                    document.querySelector('.burger').classList.remove('active');
                 }
 
                 const hash = link.getAttribute('href').slice(1);
