@@ -14,6 +14,7 @@
 <body>
     <nav class="navbar">
         <ul>
+            <span class="navbar-pill" id="navbar-pill"></span>
             <li><a href="#about">À propos</a></li>
             <li><a href="#services">Services</a></li>
             <li><a href="#projects">Projets</a></li>
@@ -411,59 +412,160 @@
         <section id="v2-projects" class="v2-section stage-night-1">
             <h2>Mes Projets</h2>
             <div class="project-grid-v2">
-                <a class="project-card" href="https://github.com/mcourbon/ThreeJS_3D_Pong" target="_blank"
-                    rel="noopener">
-                    <img src="assets/pong.png" alt="Pong 3D" class="project-card-img">
-                    <div class="project-overlay">
-                        <h3>Pong 3D</h3>
-                        <p class="project-tags">JavaScript · Three.js</p>
+                <div class="project-card">
+                    <a class="project-image-link" href="https://github.com/mcourbon/ThreeJS_3D_Pong" target="_blank"
+                        rel="noopener">
+                        <img src="assets/pong.png" alt="Pong 3D" class="project-card-img">
+                    </a>
+                    <div class="project-info">
+                        <button class="project-expand-btn" type="button" aria-expanded="false">
+                            <span class="project-info-text">
+                                <span class="project-title">Pong 3D</span>
+                                <span class="project-tags">JavaScript · Three.js</span>
+                            </span>
+                            <span class="chevron-icon" aria-hidden="true"></span>
+                        </button>
+                        <div class="project-details">
+                            <p>Un pong revisité en 3D, entièrement fait main en JavaScript et Three.js, sans
+                                framework, juste du rendu 3D et de la physique de jeu.</p>
+                            <a href="https://github.com/mcourbon/ThreeJS_3D_Pong" target="_blank" rel="noopener"
+                                class="project-details-link">Voir le projet →</a>
+                        </div>
                     </div>
-                </a>
-                <a class="project-card" href="https://github.com/Axiaaa/ft_transcendance" target="_blank"
-                    rel="noopener">
-                    <img src="assets/transcendance.png" alt="Transcendance" class="project-card-img">
-                    <div class="project-overlay">
-                        <h3>Transcendance</h3>
-                        <p class="project-tags">TypeScript · Docker · École 42</p>
+                </div>
+
+                <div class="project-card">
+                    <a class="project-image-link" href="https://github.com/Axiaaa/ft_transcendance" target="_blank"
+                        rel="noopener">
+                        <img src="assets/transcendance.png" alt="Transcendance" class="project-card-img">
+                    </a>
+                    <div class="project-info">
+                        <button class="project-expand-btn" type="button" aria-expanded="false">
+                            <span class="project-info-text">
+                                <span class="project-title">Transcendance</span>
+                                <span class="project-tags">TypeScript · Docker · École 42</span>
+                            </span>
+                            <span class="chevron-icon" aria-hidden="true"></span>
+                        </button>
+                        <div class="project-details">
+                            <p>Projet d'école 42 réalisé en équipe : une plateforme multijoueur en TypeScript,
+                                conteneurisée avec Docker.</p>
+                            <a href="https://github.com/Axiaaa/ft_transcendance" target="_blank" rel="noopener"
+                                class="project-details-link">Voir le projet →</a>
+                        </div>
                     </div>
-                </a>
-                <a class="project-card" href="https://apple-reproduction.vercel.app/" target="_blank" rel="noopener">
-                    <img src="assets/apple-reproduction.png" alt="Apple Reproduction" class="project-card-img">
-                    <div class="project-overlay">
-                        <h3>Apple Reproduction</h3>
-                        <p class="project-tags">React · Three.js · GSAP</p>
+                </div>
+
+                <div class="project-card">
+                    <a class="project-image-link" href="https://apple-reproduction.vercel.app/" target="_blank"
+                        rel="noopener">
+                        <img src="assets/apple-reproduction.png" alt="Apple Reproduction" class="project-card-img">
+                    </a>
+                    <div class="project-info">
+                        <button class="project-expand-btn" type="button" aria-expanded="false">
+                            <span class="project-info-text">
+                                <span class="project-title">Apple Reproduction</span>
+                                <span class="project-tags">React · Three.js · GSAP</span>
+                            </span>
+                            <span class="chevron-icon" aria-hidden="true"></span>
+                        </button>
+                        <div class="project-details">
+                            <p>Reproduction fidèle du site Apple : animations au scroll et effets 3D avec React
+                                Three Fiber, transitions soignées avec GSAP.</p>
+                            <a href="https://apple-reproduction.vercel.app/" target="_blank" rel="noopener"
+                                class="project-details-link">Voir le projet →</a>
+                        </div>
                     </div>
-                </a>
-                <a class="project-card" href="https://template-bien-etre.vercel.app/" target="_blank" rel="noopener">
-                    <img src="assets/template-bien-etre.png" alt="Template Bien Être" class="project-card-img">
-                    <div class="project-overlay">
-                        <h3>Template Bien Être</h3>
-                        <p class="project-tags">React · Vite · Tailwind</p>
+                </div>
+
+                <div class="project-card">
+                    <a class="project-image-link" href="https://template-bien-etre.vercel.app/" target="_blank"
+                        rel="noopener">
+                        <img src="assets/template-bien-etre.png" alt="Template Bien Être" class="project-card-img">
+                    </a>
+                    <div class="project-info">
+                        <button class="project-expand-btn" type="button" aria-expanded="false">
+                            <span class="project-info-text">
+                                <span class="project-title">Template Bien Être</span>
+                                <span class="project-tags">React · Vite · Tailwind</span>
+                            </span>
+                            <span class="chevron-icon" aria-hidden="true"></span>
+                        </button>
+                        <div class="project-details">
+                            <p>Template pour praticiens de bien-être : reiki, massages, rééquilibrage énergétique,
+                                pensé pour être facilement personnalisable.</p>
+                            <a href="https://template-bien-etre.vercel.app/" target="_blank" rel="noopener"
+                                class="project-details-link">Voir le projet →</a>
+                        </div>
                     </div>
-                </a>
-                <a class="project-card" href="https://lavilladurocher-pierrelatte.com/" target="_blank"
-                    rel="noopener">
-                    <img src="assets/lavilladurocher.png" alt="La Villa du Rocher" class="project-card-img">
-                    <div class="project-overlay">
-                        <h3>La Villa du Rocher</h3>
-                        <p class="project-tags">Next.js · CMS</p>
+                </div>
+
+                <div class="project-card">
+                    <a class="project-image-link" href="https://lavilladurocher-pierrelatte.com/" target="_blank"
+                        rel="noopener">
+                        <img src="assets/lavilladurocher.png" alt="La Villa du Rocher" class="project-card-img">
+                    </a>
+                    <div class="project-info">
+                        <button class="project-expand-btn" type="button" aria-expanded="false">
+                            <span class="project-info-text">
+                                <span class="project-title">La Villa du Rocher</span>
+                                <span class="project-tags">Next.js · CMS</span>
+                            </span>
+                            <span class="chevron-icon" aria-hidden="true"></span>
+                        </button>
+                        <div class="project-details">
+                            <p>Site vitrine pour une praticienne en soins énergétiques à Pierrelatte, avec un blog
+                                éditable via TinaCMS sans toucher au code.</p>
+                            <a href="https://lavilladurocher-pierrelatte.com/" target="_blank" rel="noopener"
+                                class="project-details-link">Voir le projet →</a>
+                        </div>
                     </div>
-                </a>
-                <a class="project-card" href="https://synapse-flashcards.vercel.app/" target="_blank" rel="noopener">
-                    <img src="assets/synapse.png" alt="Synapse" class="project-card-img">
-                    <div class="project-overlay">
-                        <h3>Synapse</h3>
-                        <p class="project-tags">React Native · Supabase</p>
+                </div>
+
+                <div class="project-card">
+                    <a class="project-image-link" href="https://synapse-flashcards.vercel.app/" target="_blank"
+                        rel="noopener">
+                        <img src="assets/synapse.png" alt="Synapse" class="project-card-img">
+                    </a>
+                    <div class="project-info">
+                        <button class="project-expand-btn" type="button" aria-expanded="false">
+                            <span class="project-info-text">
+                                <span class="project-title">Synapse</span>
+                                <span class="project-tags">React Native · Supabase</span>
+                            </span>
+                            <span class="chevron-icon" aria-hidden="true"></span>
+                        </button>
+                        <div class="project-details">
+                            <p>Application mobile de flashcards pour réviser efficacement, avec synchronisation des
+                                données via Supabase.</p>
+                            <a href="https://synapse-flashcards.vercel.app/" target="_blank" rel="noopener"
+                                class="project-details-link">Voir le projet →</a>
+                        </div>
                     </div>
-                </a>
-                <a class="project-card" href="https://rangements-chaussures.com/" target="_blank" rel="noopener">
-                    <img src="assets/rangementschaussuresaccueil.png" alt="Rangements-Chaussures"
-                        class="project-card-img">
-                    <div class="project-overlay">
-                        <h3>Rangements-Chaussures</h3>
-                        <p class="project-tags">Next.js · Supabase · Stripe</p>
+                </div>
+
+                <div class="project-card">
+                    <a class="project-image-link" href="https://rangements-chaussures.com/" target="_blank"
+                        rel="noopener">
+                        <img src="assets/rangementschaussuresaccueil.png" alt="Rangements-Chaussures"
+                            class="project-card-img">
+                    </a>
+                    <div class="project-info">
+                        <button class="project-expand-btn" type="button" aria-expanded="false">
+                            <span class="project-info-text">
+                                <span class="project-title">Rangements-Chaussures</span>
+                                <span class="project-tags">Next.js · Supabase · Stripe</span>
+                            </span>
+                            <span class="chevron-icon" aria-hidden="true"></span>
+                        </button>
+                        <div class="project-details">
+                            <p>Boutique e-commerce complète : panier, paiement Stripe et PayPal, emails
+                                automatiques, suivi de stock et panel admin, développée de A à Z.</p>
+                            <a href="https://rangements-chaussures.com/" target="_blank" rel="noopener"
+                                class="project-details-link">Voir le projet →</a>
+                        </div>
                     </div>
-                </a>
+                </div>
             </div>
         </section>
 
@@ -486,26 +588,6 @@
                     <img src="assets/typescript.svg" alt="TypeScript">
                     <p>TypeScript</p>
                 </a>
-                <a href="https://threejs.org/" class="tech-card" target="_blank">
-                    <img src="assets/three.svg" alt="Three.js">
-                    <p>Three.js</p>
-                </a>
-                <a href="https://www.babylonjs.com/" class="tech-card" target="_blank">
-                    <img src="assets/babylon.svg" alt="Babylon.js">
-                    <p>Babylon.js</p>
-                </a>
-                <a href="https://en.wikipedia.org/wiki/C_(programming_language)" class="tech-card" target="_blank">
-                    <img src="assets/c.svg" alt="C">
-                    <p>C</p>
-                </a>
-                <a href="https://en.wikipedia.org/wiki/C%2B%2B" class="tech-card" target="_blank">
-                    <img src="assets/cpp.svg" alt="C++">
-                    <p>C++</p>
-                </a>
-                <a href="https://git-scm.com/" class="tech-card" target="_blank">
-                    <img src="assets/git.svg" alt="Git">
-                    <p>Git</p>
-                </a>
                 <a href="https://fr.react.dev/" class="tech-card" target="_blank">
                     <img src="assets/react.svg" alt="React">
                     <p>React</p>
@@ -522,9 +604,33 @@
                     <img src="assets/nextjs.svg" alt="Next.js">
                     <p>Next.js</p>
                 </a>
+                <a href="https://nodejs.org/" class="tech-card" target="_blank">
+                    <img src="assets/nodejs.svg" alt="Node.js">
+                    <p>Node.js</p>
+                </a>
                 <a href="https://supabase.com/" class="tech-card" target="_blank">
                     <img src="assets/supabase.svg" alt="Supabase">
                     <p>Supabase</p>
+                </a>
+                <a href="https://git-scm.com/" class="tech-card" target="_blank">
+                    <img src="assets/git.svg" alt="Git">
+                    <p>Git</p>
+                </a>
+                <a href="https://threejs.org/" class="tech-card" target="_blank">
+                    <img src="assets/three.svg" alt="Three.js">
+                    <p>Three.js</p>
+                </a>
+                <a href="https://www.babylonjs.com/" class="tech-card" target="_blank">
+                    <img src="assets/babylon.svg" alt="Babylon.js">
+                    <p>Babylon.js</p>
+                </a>
+                <a href="https://en.wikipedia.org/wiki/C_(programming_language)" class="tech-card" target="_blank">
+                    <img src="assets/c.svg" alt="C">
+                    <p>C</p>
+                </a>
+                <a href="https://en.wikipedia.org/wiki/C%2B%2B" class="tech-card" target="_blank">
+                    <img src="assets/cpp.svg" alt="C++">
+                    <p>C++</p>
                 </a>
             </div>
         </section>
@@ -553,6 +659,9 @@
         function toggleMenu() {
             const navbar = document.querySelector('.navbar');
             navbar.classList.toggle('show');
+            if (navbar.classList.contains('show')) {
+                navbar.classList.remove('navbar-hidden');
+            }
         }
         document.querySelectorAll('.navbar a').forEach(link => {
             link.addEventListener('click', (e) => {
@@ -581,6 +690,9 @@
         const versionButtons = document.querySelectorAll('.version-btn');
         const versionTag = document.getElementById('version-tag');
 
+        const navbarEl = document.querySelector('.navbar');
+        const burgerEl = document.querySelector('.burger');
+
         let heroV2Loaded = false;
         function setVersion(version) {
             localStorage.setItem('portfolio-version', version);
@@ -588,6 +700,8 @@
             v2Content.classList.toggle('active', version === 'v2');
             versionButtons.forEach(btn => btn.classList.toggle('active', btn.dataset.version === version));
             versionTag.textContent = VERSIONS[version];
+            navbarEl.classList.toggle('v2-mode', version === 'v2');
+            burgerEl.classList.toggle('v2-mode', version === 'v2');
             if (version === 'v2' && !heroV2Loaded) {
                 heroV2Loaded = true;
                 import('./hero-v2.js');
@@ -599,6 +713,47 @@
         });
 
         setVersion(localStorage.getItem('portfolio-version') || 'v1');
+
+        // V2 projects: chevron toggles the "en savoir plus" panel per card
+        document.querySelectorAll('.project-expand-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const card = btn.closest('.project-card');
+                const expanded = card.classList.toggle('expanded');
+                btn.setAttribute('aria-expanded', String(expanded));
+            });
+        });
+
+        // V2 nav: sliding hover pill behind the active/hovered link
+        const navList = document.querySelector('.navbar ul');
+        const navPill = document.getElementById('navbar-pill');
+        if (navList && navPill) {
+            navList.querySelectorAll('a').forEach(link => {
+                link.addEventListener('mouseenter', () => {
+                    if ((localStorage.getItem('portfolio-version') || 'v1') !== 'v2') return;
+                    const listRect = navList.getBoundingClientRect();
+                    const linkRect = link.getBoundingClientRect();
+                    navPill.style.left = (linkRect.left - listRect.left) + 'px';
+                    navPill.style.width = linkRect.width + 'px';
+                    navPill.style.opacity = '1';
+                });
+            });
+            navList.addEventListener('mouseleave', () => {
+                navPill.style.opacity = '0';
+            });
+        }
+
+        // V2 nav: hide on scroll down, reveal on scroll up (V1 keeps the classic always-visible nav)
+        let lastScrollY = window.scrollY;
+        window.addEventListener('scroll', () => {
+            if ((localStorage.getItem('portfolio-version') || 'v1') !== 'v2') return;
+            const currentY = window.scrollY;
+            const scrollingDown = currentY > lastScrollY && currentY > 120;
+            if (!navbarEl.classList.contains('show')) {
+                navbarEl.classList.toggle('navbar-hidden', scrollingDown);
+            }
+            burgerEl.classList.toggle('navbar-hidden', scrollingDown);
+            lastScrollY = currentY;
+        }, { passive: true });
     </script>
 </body>
 
