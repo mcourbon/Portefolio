@@ -526,8 +526,22 @@ html {
 
 @media (max-width: 640px) {
     #v2-technologies .tech-grid {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 1rem;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 0.75rem;
+    }
+
+    #v2-technologies .tech-card {
+        padding: 0.75rem 0.5rem;
+        min-width: 0;
+    }
+
+    #v2-technologies .tech-card img {
+        width: clamp(2em, 8vw, 3em);
+        height: clamp(2em, 8vw, 3em);
+    }
+
+    #v2-technologies .tech-card p {
+        font-size: 0.75rem;
     }
 }
 
