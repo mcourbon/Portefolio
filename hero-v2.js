@@ -29,8 +29,12 @@ if (canvas) {
         c.width = c.height = size;
         const ctx = c.getContext('2d');
         const gradient = ctx.createRadialGradient(size / 2, size / 2, 0, size / 2, size / 2, size / 2);
-        gradient.addColorStop(0, 'rgba(243, 229, 201, 0.9)');
-        gradient.addColorStop(0.3, 'rgba(243, 229, 201, 0.35)');
+        gradient.addColorStop(0, 'rgba(243, 229, 201, 0.85)');
+        gradient.addColorStop(0.15, 'rgba(243, 229, 201, 0.5)');
+        gradient.addColorStop(0.35, 'rgba(243, 229, 201, 0.25)');
+        gradient.addColorStop(0.55, 'rgba(243, 229, 201, 0.11)');
+        gradient.addColorStop(0.75, 'rgba(243, 229, 201, 0.04)');
+        gradient.addColorStop(0.9, 'rgba(243, 229, 201, 0.01)');
         gradient.addColorStop(1, 'rgba(243, 229, 201, 0)');
         ctx.fillStyle = gradient;
         ctx.fillRect(0, 0, size, size);
@@ -47,19 +51,36 @@ if (canvas) {
 
     // Moon: a single sphere shaded into a crescent by real directional
     // lighting (no second occluding sphere, no seam to blend away).
-    // Surface texture: Solar System Scope (CC BY 4.0, solarsystemscope.com/textures)
-    const moonTexture = new THREE.TextureLoader().load('assets/moon-texture.jpg');
-    moonTexture.colorSpace = THREE.SRGBColorSpace;
+    // Starts as a flat color; once the surface texture (Solar System Scope,
+    // CC BY 4.0, solarsystemscope.com/textures) loads, it's blended down
+    // with a flat cream fill so the crater detail reads as a subtle relief
+    // rather than a photographic image against the site's flat, illustrated
+    // look, then swapped in as the map.
     const moon = new THREE.Mesh(
         new THREE.SphereGeometry(1.1, 64, 64),
         new THREE.MeshStandardMaterial({
-            map: moonTexture,
             color: 0xfbeedc,
             emissive: 0x1a1235,
             emissiveIntensity: 0.55,
             roughness: 1,
         })
     );
+
+    new THREE.TextureLoader().load('assets/moon-texture.jpg', (loaded) => {
+        const img = loaded.image;
+        const c = document.createElement('canvas');
+        c.width = img.width;
+        c.height = img.height;
+        const ctx = c.getContext('2d');
+        ctx.drawImage(img, 0, 0);
+        ctx.globalAlpha = 0.55;
+        ctx.fillStyle = '#f3e5c9';
+        ctx.fillRect(0, 0, c.width, c.height);
+        const blended = new THREE.CanvasTexture(c);
+        blended.colorSpace = THREE.SRGBColorSpace;
+        moon.material.map = blended;
+        moon.material.needsUpdate = true;
+    });
 
     const moonGroup = new THREE.Group();
     moonGroup.add(glowSprite);
@@ -95,8 +116,15 @@ if (canvas) {
     createStarLayer(60, 26, 7, 0.02, 0.3);
 
     scene.add(new THREE.AmbientLight(0x3a2f60, 0.35));
+    // The light orbits with the moon's own rotation (see animate()) so the
+    // lit/dark split stays attached to the same craters instead of the
+    // terminator staying fixed on screen while the texture spins under it.
+    const moonLightBaseOffset = new THREE.Vector3(-9, 1, -6);
     const moonLight = new THREE.DirectionalLight(0xf3e5c9, 2.2);
-    moonLight.position.set(-9, 1, -6);
+    moonLight.position.copy(moonLightBaseOffset);
+    const moonLightTarget = new THREE.Object3D();
+    scene.add(moonLightTarget);
+    moonLight.target = moonLightTarget;
     scene.add(moonLight);
 
     // Mouse parallax: camera drifts gently, dune layers shift per depth
@@ -125,7 +153,11 @@ if (canvas) {
         const t = clock.getElapsedTime();
 
         moonGroup.position.y = 2.2 + Math.sin(t * 0.15) * 0.1;
-        moonGroup.rotation.y = Math.sin(t * 0.05) * 0.15;
+        moon.rotation.y = t * 0.06;
+
+        const rotatedLightOffset = moonLightBaseOffset.clone().applyAxisAngle(new THREE.Vector3(0, 1, 0), moon.rotation.y);
+        moonLight.position.copy(moonGroup.position).add(rotatedLightOffset);
+        moonLightTarget.position.copy(moonGroup.position);
 
         camera.position.x += (targetX - camera.position.x) * 0.02;
         camera.position.y += (-targetY - camera.position.y) * 0.02;
