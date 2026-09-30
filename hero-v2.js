@@ -45,27 +45,25 @@ if (canvas) {
     }));
     glowSprite.scale.set(6.5, 6.5, 1);
 
-    // Moon (crescent phase via a dark occluding sphere, same trick as V1)
+    // Moon: a single sphere shaded into a crescent by real directional
+    // lighting (no second occluding sphere, no seam to blend away).
+    // Surface texture: Solar System Scope (CC BY 4.0, solarsystemscope.com/textures)
+    const moonTexture = new THREE.TextureLoader().load('assets/moon-texture.jpg');
+    moonTexture.colorSpace = THREE.SRGBColorSpace;
     const moon = new THREE.Mesh(
         new THREE.SphereGeometry(1.1, 64, 64),
         new THREE.MeshStandardMaterial({
-            color: 0xf3e5c9,
-            emissive: 0x4a3a1e,
-            emissiveIntensity: 0.15,
-            roughness: 0.9,
+            map: moonTexture,
+            color: 0xfbeedc,
+            emissive: 0x1a1235,
+            emissiveIntensity: 0.55,
+            roughness: 1,
         })
     );
-
-    const mask = new THREE.Mesh(
-        new THREE.SphereGeometry(1.1, 64, 64),
-        new THREE.MeshBasicMaterial({ color: 0x150f2e })
-    );
-    mask.position.set(0.45, 0.1, 0.35);
 
     const moonGroup = new THREE.Group();
     moonGroup.add(glowSprite);
     moonGroup.add(moon);
-    moonGroup.add(mask);
     moonGroup.position.set(2.4, 2.2, -3);
     scene.add(moonGroup);
 
@@ -96,10 +94,10 @@ if (canvas) {
     createStarLayer(90, 26, 8, 0.03, 0.5);
     createStarLayer(60, 26, 7, 0.02, 0.3);
 
-    scene.add(new THREE.AmbientLight(0xffffff, 0.6));
-    const rimLight = new THREE.DirectionalLight(0xf3e5c9, 0.6);
-    rimLight.position.set(-3, 2, 4);
-    scene.add(rimLight);
+    scene.add(new THREE.AmbientLight(0x3a2f60, 0.35));
+    const moonLight = new THREE.DirectionalLight(0xf3e5c9, 2.2);
+    moonLight.position.set(-9, 1, -6);
+    scene.add(moonLight);
 
     // Mouse parallax: camera drifts gently, dune layers shift per depth
     const duneLayers = [
