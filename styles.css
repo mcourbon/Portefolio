@@ -54,8 +54,8 @@ html {
 
 .navbar-pill {
     position: absolute;
-    top: -0.3rem;
-    height: calc(100% + 0.6rem);
+    top: -0.05rem;
+    height: calc(100% + 0.1rem);
     border-radius: 999px;
     background: #e8a35c;
     opacity: 0;
