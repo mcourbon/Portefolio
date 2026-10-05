@@ -14,6 +14,7 @@
 <body>
     <nav class="navbar">
         <ul>
+            <span class="navbar-pill" id="navbar-pill"></span>
             <li><a href="#about">À propos</a></li>
             <li><a href="#services">Services</a></li>
             <li><a href="#projects">Projets</a></li>
@@ -21,7 +22,19 @@
             <li><a href="#contact">Contact</a></li>
         </ul>
     </nav>
-    <button class="burger" onclick="toggleMenu()">☰</button>
+    <button class="burger" onclick="toggleMenu()" aria-label="Menu">
+        <span class="burger-bar"></span>
+        <span class="burger-bar"></span>
+        <span class="burger-bar"></span>
+    </button>
+
+    <div class="version-switcher">
+        <button class="version-btn" data-version="v1">V1</button>
+        <button class="version-btn" data-version="v2">V2</button>
+        <span class="version-tag" id="version-tag"></span>
+    </div>
+
+    <div id="v1-content" class="version-content">
     <header>
         <h1 class="fade-in">Marc-Antoine Courbon</h1>
         <p class="slide-in-from-bot">Développeur Web / Créateur 3D</p>
@@ -270,21 +283,479 @@
             <input type="hidden" name="_next" value="https://marcantoinecourbon.dev/">
         </form>
     </section>
+    </div>
+
+    <div id="v2-content" class="version-content">
+        <header class="hero-v2">
+            <div class="hero-v2-sky"></div>
+            <canvas id="hero-v2-canvas"></canvas>
+
+            <svg class="dune-layer dune-back" viewBox="0 0 1440 400" preserveAspectRatio="none">
+                <path d="M0,400 L0,260 C120,230 240,200 360,210 C480,220 600,260 720,250 C840,240 960,190 1080,195 C1200,200 1320,230 1440,215 L1440,400 Z"
+                    fill="#241726" />
+            </svg>
+
+            <svg class="dune-layer dune-mid" viewBox="0 0 1440 400" preserveAspectRatio="none">
+                <defs>
+                    <linearGradient id="duneMidGradient" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stop-color="#7a4030" />
+                        <stop offset="100%" stop-color="#5c2f2a" />
+                    </linearGradient>
+                </defs>
+                <path d="M0,400 L0,300 C160,260 320,340 480,300 C640,260 800,220 960,260 C1120,300 1280,340 1440,290 L1440,400 Z"
+                    fill="url(#duneMidGradient)" />
+            </svg>
+
+            <svg class="dune-layer dune-front" viewBox="0 0 1440 400" preserveAspectRatio="none">
+                <defs>
+                    <linearGradient id="duneFrontGradient" gradientUnits="userSpaceOnUse" x1="0" y1="220" x2="0"
+                        y2="400">
+                        <stop offset="0%" stop-color="#e8a35c" />
+                        <stop offset="100%" stop-color="#c47a45" />
+                    </linearGradient>
+                </defs>
+                <path d="M0,400 L0,340 C100,300 220,220 340,240 C460,260 520,340 640,330 C760,320 820,240 940,230 C1060,220 1140,300 1260,320 C1340,335 1400,350 1440,340 L1440,400 Z"
+                    fill="url(#duneFrontGradient)" />
+                <path class="dune-ridge-line"
+                    d="M0,340 C100,300 220,220 340,240 C460,260 520,340 640,330 C760,320 820,240 940,230 C1060,220 1140,300 1260,320 C1340,335 1400,350 1440,340" />
+            </svg>
+
+            <canvas id="sand-canvas"></canvas>
+
+            <div class="hero-v2-content">
+                <h1 class="fade-in">Marc-Antoine Courbon</h1>
+                <p class="slide-in-from-bot">Développeur Web / Créateur 3D</p>
+                <div class="hero-v2-scroll-cue">
+                    <div class="chevron-group">
+                        <div class="chevron"></div>
+                        <div class="chevron"></div>
+                        <div class="chevron"></div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <section id="v2-about" class="v2-section stage-dusk-1">
+            <h2>Mon parcours</h2>
+            <ol class="timeline">
+                <li class="timeline-step">
+                    <span class="timeline-dot"></span>
+                    <div class="timeline-content">
+                        <span class="timeline-label">Musique</span>
+                        <p>La musique m'a appris le rythme et l'équilibre. C'est une sensibilité que je retrouve
+                            aujourd'hui dans ma façon de coder.</p>
+                    </div>
+                </li>
+                <li class="timeline-step">
+                    <span class="timeline-dot"></span>
+                    <div class="timeline-content">
+                        <span class="timeline-label">Autoentrepreneuriat</span>
+                        <p>Une première aventure entrepreneuriale, où j'ai appris à m'adapter vite et à cultiver une
+                            vraie curiosité technique.</p>
+                    </div>
+                </li>
+                <li class="timeline-step">
+                    <span class="timeline-dot"></span>
+                    <div class="timeline-content">
+                        <span class="timeline-label">École 42</span>
+                        <p>Là où j'ai affiné ma méthode : du code propre, une vraie attention au responsive, et le
+                            souci de rendre chaque expérience fluide.</p>
+                    </div>
+                </li>
+                <li class="timeline-step timeline-step-current">
+                    <span class="timeline-dot"></span>
+                    <div class="timeline-content">
+                        <span class="timeline-label">Aujourd'hui</span>
+                        <p>Développeur full-stack freelance basé à Lyon : frontend et backend (Next.js, Node.js),
+                            bases de données, paiements en ligne, SEO et expériences web 3D.</p>
+                    </div>
+                </li>
+            </ol>
+        </section>
+
+        <section id="v2-services" class="v2-section stage-dusk-2">
+            <h2>Services</h2>
+            <ul class="services-list-v2">
+                <li class="sand-card sand-card-tight">
+                    <h3>Développement full‑stack</h3>
+                    <p>Sites et applications sur-mesure, du frontend au backend (Next.js, Node.js)</p>
+                </li>
+                <li class="sand-card sand-card-tight">
+                    <h3>Bases de données & API</h3>
+                    <p>Modélisation de données, API sécurisées, authentification</p>
+                </li>
+                <li class="sand-card sand-card-tight">
+                    <h3>Paiement & e‑commerce</h3>
+                    <p>Intégration de solutions de paiement (Stripe, PayPal), gestion de commandes</p>
+                </li>
+                <li class="sand-card sand-card-tight">
+                    <h3>Expériences 3D interactives</h3>
+                    <p>Animations et assets optimisés (Three.js, Babylon.js) pour capter l'attention sans alourdir la
+                        page</p>
+                </li>
+                <li class="sand-card sand-card-tight">
+                    <h3>Optimisation SEO</h3>
+                    <p>Amélioration du référencement naturel de votre site pour une meilleure visibilité sur les
+                        moteurs de recherche</p>
+                </li>
+                <li class="sand-card sand-card-tight">
+                    <h3>Maintenance et évolutions</h3>
+                    <p>Ajout de contenu, nouvelles fonctionnalités, optimisation des performances</p>
+                </li>
+            </ul>
+        </section>
+
+        <section id="v2-projects" class="v2-section stage-night-1">
+            <h2>Mes Projets</h2>
+            <div class="project-grid-v2">
+                <div class="project-card">
+                    <a class="project-image-link" href="https://github.com/mcourbon/ThreeJS_3D_Pong" target="_blank"
+                        rel="noopener">
+                        <img src="assets/pong.png" alt="Pong 3D" class="project-card-img">
+                    </a>
+                    <div class="project-info">
+                        <button class="project-expand-btn" type="button" aria-expanded="false">
+                            <span class="project-info-text">
+                                <span class="project-title">Pong 3D</span>
+                                <span class="project-tags">JavaScript · Three.js</span>
+                            </span>
+                            <span class="chevron-icon" aria-hidden="true"></span>
+                        </button>
+                        <div class="project-details">
+                            <p>Un pong revisité en 3D, entièrement fait main en JavaScript et Three.js, sans
+                                framework, juste du rendu 3D et de la physique de jeu.</p>
+                            <a href="https://github.com/mcourbon/ThreeJS_3D_Pong" target="_blank" rel="noopener"
+                                class="project-details-link">Voir le projet →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <a class="project-image-link" href="https://github.com/Axiaaa/ft_transcendance" target="_blank"
+                        rel="noopener">
+                        <img src="assets/transcendance.png" alt="Transcendance" class="project-card-img">
+                    </a>
+                    <div class="project-info">
+                        <button class="project-expand-btn" type="button" aria-expanded="false">
+                            <span class="project-info-text">
+                                <span class="project-title">Transcendance</span>
+                                <span class="project-tags">TypeScript · Docker · École 42</span>
+                            </span>
+                            <span class="chevron-icon" aria-hidden="true"></span>
+                        </button>
+                        <div class="project-details">
+                            <p>Projet d'école 42 réalisé en équipe : une plateforme multijoueur en TypeScript,
+                                conteneurisée avec Docker.</p>
+                            <a href="https://github.com/Axiaaa/ft_transcendance" target="_blank" rel="noopener"
+                                class="project-details-link">Voir le projet →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <a class="project-image-link" href="https://apple-reproduction.vercel.app/" target="_blank"
+                        rel="noopener">
+                        <img src="assets/apple-reproduction.png" alt="Apple Reproduction" class="project-card-img">
+                    </a>
+                    <div class="project-info">
+                        <button class="project-expand-btn" type="button" aria-expanded="false">
+                            <span class="project-info-text">
+                                <span class="project-title">Apple Reproduction</span>
+                                <span class="project-tags">React · Three.js · GSAP</span>
+                            </span>
+                            <span class="chevron-icon" aria-hidden="true"></span>
+                        </button>
+                        <div class="project-details">
+                            <p>Reproduction fidèle du site Apple : animations au scroll et effets 3D avec React
+                                Three Fiber, transitions soignées avec GSAP.</p>
+                            <a href="https://apple-reproduction.vercel.app/" target="_blank" rel="noopener"
+                                class="project-details-link">Voir le projet →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <a class="project-image-link" href="https://template-bien-etre.vercel.app/" target="_blank"
+                        rel="noopener">
+                        <img src="assets/template-bien-etre.png" alt="Template Bien Être" class="project-card-img">
+                    </a>
+                    <div class="project-info">
+                        <button class="project-expand-btn" type="button" aria-expanded="false">
+                            <span class="project-info-text">
+                                <span class="project-title">Template Bien Être</span>
+                                <span class="project-tags">React · Vite · Tailwind</span>
+                            </span>
+                            <span class="chevron-icon" aria-hidden="true"></span>
+                        </button>
+                        <div class="project-details">
+                            <p>Template pour praticiens de bien-être : reiki, massages, rééquilibrage énergétique,
+                                pensé pour être facilement personnalisable.</p>
+                            <a href="https://template-bien-etre.vercel.app/" target="_blank" rel="noopener"
+                                class="project-details-link">Voir le projet →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <a class="project-image-link" href="https://lavilladurocher-pierrelatte.com/" target="_blank"
+                        rel="noopener">
+                        <img src="assets/lavilladurocher.png" alt="La Villa du Rocher" class="project-card-img">
+                    </a>
+                    <div class="project-info">
+                        <button class="project-expand-btn" type="button" aria-expanded="false">
+                            <span class="project-info-text">
+                                <span class="project-title">La Villa du Rocher</span>
+                                <span class="project-tags">Next.js · CMS</span>
+                            </span>
+                            <span class="chevron-icon" aria-hidden="true"></span>
+                        </button>
+                        <div class="project-details">
+                            <p>Site vitrine pour une praticienne en soins énergétiques à Pierrelatte, avec un blog
+                                éditable via TinaCMS sans toucher au code.</p>
+                            <a href="https://lavilladurocher-pierrelatte.com/" target="_blank" rel="noopener"
+                                class="project-details-link">Voir le projet →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <a class="project-image-link" href="https://synapse-flashcards.vercel.app/" target="_blank"
+                        rel="noopener">
+                        <img src="assets/synapse.png" alt="Synapse" class="project-card-img">
+                    </a>
+                    <div class="project-info">
+                        <button class="project-expand-btn" type="button" aria-expanded="false">
+                            <span class="project-info-text">
+                                <span class="project-title">Synapse</span>
+                                <span class="project-tags">React Native · Supabase</span>
+                            </span>
+                            <span class="chevron-icon" aria-hidden="true"></span>
+                        </button>
+                        <div class="project-details">
+                            <p>Application mobile de flashcards pour réviser efficacement, avec synchronisation des
+                                données via Supabase.</p>
+                            <a href="https://synapse-flashcards.vercel.app/" target="_blank" rel="noopener"
+                                class="project-details-link">Voir le projet →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <a class="project-image-link" href="https://rangements-chaussures.com/" target="_blank"
+                        rel="noopener">
+                        <img src="assets/rangementschaussuresaccueil.png" alt="Rangements-Chaussures"
+                            class="project-card-img">
+                    </a>
+                    <div class="project-info">
+                        <button class="project-expand-btn" type="button" aria-expanded="false">
+                            <span class="project-info-text">
+                                <span class="project-title">Rangements-Chaussures</span>
+                                <span class="project-tags">Next.js · Supabase · Stripe</span>
+                            </span>
+                            <span class="chevron-icon" aria-hidden="true"></span>
+                        </button>
+                        <div class="project-details">
+                            <p>Boutique e-commerce complète : panier, paiement Stripe et PayPal, emails
+                                automatiques, suivi de stock et panel admin, développée de A à Z.</p>
+                            <a href="https://rangements-chaussures.com/" target="_blank" rel="noopener"
+                                class="project-details-link">Voir le projet →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="v2-technologies" class="v2-section stage-night-2">
+            <h2>Technologies Utilisées</h2>
+            <div class="tech-grid">
+                <a href="https://developer.mozilla.org/fr/docs/Web/HTML" class="tech-card" target="_blank">
+                    <img src="assets/html-5.svg" alt="HTML">
+                    <p>HTML</p>
+                </a>
+                <a href="https://developer.mozilla.org/fr/docs/Web/CSS" class="tech-card" target="_blank">
+                    <img src="assets/css-3.svg" alt="CSS">
+                    <p>CSS</p>
+                </a>
+                <a href="https://developer.mozilla.org/fr/docs/Web/JavaScript" class="tech-card" target="_blank">
+                    <img src="assets/javascript.svg" alt="JavaScript">
+                    <p>JavaScript</p>
+                </a>
+                <a href="http://typescriptlang.org/" class="tech-card" target="_blank">
+                    <img src="assets/typescript.svg" alt="TypeScript">
+                    <p>TypeScript</p>
+                </a>
+                <a href="https://fr.react.dev/" class="tech-card" target="_blank">
+                    <img src="assets/react.svg" alt="React">
+                    <p>React</p>
+                </a>
+                <a href="https://vite.dev/" class="tech-card" target="_blank">
+                    <img src="assets/vite.svg" alt="Vite">
+                    <p>Vite</p>
+                </a>
+                <a href="https://tailwindcss.com/" class="tech-card" target="_blank">
+                    <img src="assets/tailwind.svg" alt="Tailwind CSS">
+                    <p>Tailwind</p>
+                </a>
+                <a href="https://nextjs.org/" class="tech-card" target="_blank">
+                    <img src="assets/nextjs.svg" alt="Next.js">
+                    <p>Next.js</p>
+                </a>
+                <a href="https://nodejs.org/" class="tech-card" target="_blank">
+                    <img src="assets/nodejs.svg" alt="Node.js">
+                    <p>Node.js</p>
+                </a>
+                <a href="https://supabase.com/" class="tech-card" target="_blank">
+                    <img src="assets/supabase.svg" alt="Supabase">
+                    <p>Supabase</p>
+                </a>
+                <a href="https://git-scm.com/" class="tech-card" target="_blank">
+                    <img src="assets/git.svg" alt="Git">
+                    <p>Git</p>
+                </a>
+                <a href="https://threejs.org/" class="tech-card" target="_blank">
+                    <img src="assets/three.svg" alt="Three.js">
+                    <p>Three.js</p>
+                </a>
+                <a href="https://www.babylonjs.com/" class="tech-card" target="_blank">
+                    <img src="assets/babylon.svg" alt="Babylon.js">
+                    <p>Babylon.js</p>
+                </a>
+                <a href="https://en.wikipedia.org/wiki/C_(programming_language)" class="tech-card" target="_blank">
+                    <img src="assets/c.svg" alt="C">
+                    <p>C</p>
+                </a>
+                <a href="https://en.wikipedia.org/wiki/C%2B%2B" class="tech-card" target="_blank">
+                    <img src="assets/cpp.svg" alt="C++">
+                    <p>C++</p>
+                </a>
+            </div>
+        </section>
+
+        <section id="v2-contact" class="v2-section stage-night-3 contact-section-v2">
+            <h2>Contact</h2>
+            <p class="contact-tagline">Discutons de votre projet.</p>
+            <form class="contact-form contact-form-v2" id="contact-form-v2"
+                action="https://formsubmit.co/courbon.marcantoine@gmail.com" method="POST">
+                <div class="contact-fields" id="contact-fields">
+                    <input type="text" name="name" placeholder="Nom" required>
+                    <input type="email" name="email" placeholder="Email" required>
+                    <input type="text" name="_honey" style="display:none"> <!-- Anti Spam -->
+                    <input type="hidden" name="_captcha" value="false"> <!-- Disabled captcha -->
+                    <textarea name="message" placeholder="Message" rows="4"></textarea>
+                    <input type="hidden" name="_next" value="https://marcantoinecourbon.dev/">
+                </div>
+                <button type="submit" class="contact-beacon" id="contact-beacon">✉ Envoyer un message</button>
+            </form>
+            <a class="contact-alt-link" href="https://github.com/mcourbon" target="_blank" rel="noopener">GitHub</a>
+        </section>
+    </div>
 
     <script type="module" src="main.js"></script>
     <script>
         function toggleMenu() {
             const navbar = document.querySelector('.navbar');
-            navbar.classList.toggle('show');
+            const burger = document.querySelector('.burger');
+            const isOpen = navbar.classList.toggle('show');
+            burger.classList.toggle('active', isOpen);
+            if (isOpen) {
+                navbar.classList.remove('navbar-hidden');
+            }
         }
         document.querySelectorAll('.navbar a').forEach(link => {
-            link.addEventListener('click', () => {
+            link.addEventListener('click', (e) => {
                 const navList = document.querySelector('.navbar ');
                 if (navList.classList.contains('show')) {
                     navList.classList.remove('show');
+                    document.querySelector('.burger').classList.remove('active');
+                }
+
+                const hash = link.getAttribute('href').slice(1);
+                const activeVersion = localStorage.getItem('portfolio-version') || 'v1';
+                if (activeVersion === 'v2') {
+                    const target = document.getElementById('v2-' + hash);
+                    if (target) {
+                        e.preventDefault();
+                        target.scrollIntoView({ behavior: 'smooth' });
+                    }
                 }
             });
         });
+
+        // Version switcher (V1 / V2), bumped manually on each "final" push
+        const VERSIONS = { v1: 'v1.00', v2: 'v2.00' };
+
+        const v1Content = document.getElementById('v1-content');
+        const v2Content = document.getElementById('v2-content');
+        const versionButtons = document.querySelectorAll('.version-btn');
+        const versionTag = document.getElementById('version-tag');
+
+        const navbarEl = document.querySelector('.navbar');
+        const burgerEl = document.querySelector('.burger');
+
+        let heroV2Loaded = false;
+        function setVersion(version) {
+            localStorage.setItem('portfolio-version', version);
+            v1Content.classList.toggle('active', version === 'v1');
+            v2Content.classList.toggle('active', version === 'v2');
+            versionButtons.forEach(btn => btn.classList.toggle('active', btn.dataset.version === version));
+            versionTag.textContent = VERSIONS[version];
+            navbarEl.classList.toggle('v2-mode', version === 'v2');
+            burgerEl.classList.toggle('v2-mode', version === 'v2');
+            if (version === 'v2' && !heroV2Loaded) {
+                heroV2Loaded = true;
+                import('./hero-v2.js');
+            }
+        }
+
+        versionButtons.forEach(btn => {
+            btn.addEventListener('click', () => setVersion(btn.dataset.version));
+        });
+
+        setVersion(localStorage.getItem('portfolio-version') || 'v1');
+
+        // V2 projects: chevron toggles the "en savoir plus" panel per card
+        document.querySelectorAll('.project-expand-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const card = btn.closest('.project-card');
+                const expanded = card.classList.toggle('expanded');
+                btn.setAttribute('aria-expanded', String(expanded));
+            });
+        });
+
+        // V2 nav: sliding hover pill behind the active/hovered link
+        const navList = document.querySelector('.navbar ul');
+        const navPill = document.getElementById('navbar-pill');
+        // Touch devices emit a synthetic mouseenter right before the tap's
+        // click fires, flashing the pill at the tapped link just as the menu
+        // closes. Only wire this up for pointers that can actually hover.
+        if (navList && navPill && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+            navList.querySelectorAll('a').forEach(link => {
+                link.addEventListener('mouseenter', () => {
+                    if ((localStorage.getItem('portfolio-version') || 'v1') !== 'v2') return;
+                    const listRect = navList.getBoundingClientRect();
+                    const linkRect = link.getBoundingClientRect();
+                    navPill.style.left = (linkRect.left - listRect.left) + 'px';
+                    navPill.style.width = linkRect.width + 'px';
+                    navPill.style.opacity = '1';
+                });
+            });
+            navList.addEventListener('mouseleave', () => {
+                navPill.style.opacity = '0';
+            });
+        }
+
+        // V2 nav: hide on scroll down, reveal on scroll up (V1 keeps the classic always-visible nav)
+        let lastScrollY = window.scrollY;
+        window.addEventListener('scroll', () => {
+            if ((localStorage.getItem('portfolio-version') || 'v1') !== 'v2') return;
+            const currentY = window.scrollY;
+            const scrollingDown = currentY > lastScrollY && currentY > 120;
+            if (!navbarEl.classList.contains('show')) {
+                navbarEl.classList.toggle('navbar-hidden', scrollingDown);
+            }
+            burgerEl.classList.toggle('navbar-hidden', scrollingDown);
+            lastScrollY = currentY;
+        }, { passive: true });
     </script>
 </body>
 

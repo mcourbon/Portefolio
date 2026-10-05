@@ -8,6 +8,15 @@ body {
     overflow-x: hidden;
 }
 
+/* V2 only: kill the default mobile tap-highlight square */
+#v2-content,
+#v2-content *,
+.navbar.v2-mode,
+.navbar.v2-mode *,
+.burger.v2-mode {
+    -webkit-tap-highlight-color: transparent;
+}
+
 html {
     scroll-behavior: smooth;
 }
@@ -21,9 +30,20 @@ html {
     backdrop-filter: blur(0.625rem);
     border-radius: 0.75rem;
     padding: 1vw 1.2vw;
+    transition: transform 0.3s ease, border-radius 0.3s ease;
+}
+
+.navbar.v2-mode {
+    border-radius: 999px;
+    padding: 0.6rem 1.2rem;
+}
+
+.navbar.v2-mode.navbar-hidden {
+    transform: translateY(-8rem);
 }
 
 .navbar ul {
+    position: relative;
     list-style: none;
     display: flex;
     gap: 2rem;
@@ -31,11 +51,42 @@ html {
     padding: 0;
 }
 
+.navbar.v2-mode ul {
+    gap: 2.25rem;
+}
+
+.navbar.v2-mode li a {
+    display: inline-block;
+    font-size: 1rem;
+    padding: 0.5rem 0.9rem;
+}
+
+.navbar-pill {
+    position: absolute;
+    top: -0.05rem;
+    height: calc(100% + 0.1rem);
+    border-radius: 999px;
+    background: #e8a35c;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 0;
+    transition: left 0.25s ease, width 0.25s ease, opacity 0.2s ease;
+}
+
 .navbar li a {
     position: relative;
+    z-index: 1;
     text-decoration: none;
     color: #e6ccb2;
     transition: color 0.3s;
+}
+
+.navbar.v2-mode li a:hover {
+    color: #1a0f0a;
+}
+
+.navbar.v2-mode li a::after {
+    display: none;
 }
 
 .navbar li a::after {
@@ -65,11 +116,803 @@ html {
     position: fixed;
     top: 2rem;
     right: 2rem;
+    width: 1.75rem;
+    height: 1.75rem;
+    padding: 0;
     background: transparent;
-    font-size: 2rem;
-    color: #909090;
     border: none;
+    cursor: pointer;
     z-index: 101;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.375rem;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.burger-bar {
+    display: block;
+    width: 100%;
+    height: 0.125rem;
+    background-color: #909090;
+    border-radius: 999px;
+    transition: transform 0.3s ease, opacity 0.2s ease;
+}
+
+.burger.active .burger-bar:nth-child(1) {
+    transform: translateY(0.5rem) rotate(45deg);
+}
+
+.burger.active .burger-bar:nth-child(2) {
+    opacity: 0;
+}
+
+.burger.active .burger-bar:nth-child(3) {
+    transform: translateY(-0.5rem) rotate(-45deg);
+}
+
+.burger.v2-mode.navbar-hidden {
+    transform: translateY(-6rem);
+    opacity: 0;
+}
+
+.version-content {
+    display: none;
+}
+
+.version-content.active {
+    display: block;
+}
+
+.version-switcher {
+    position: fixed;
+    top: 2rem;
+    left: 2rem;
+    z-index: 102;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(0.625rem);
+    border-radius: 0.75rem;
+    padding: 0.4rem 0.5rem;
+}
+
+.version-btn {
+    border: none;
+    background: transparent;
+    color: #e6ccb2;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.85rem;
+    padding: 0.3rem 0.7rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+}
+
+.version-btn:hover {
+    color: #ffffff;
+}
+
+.version-btn.active {
+    background: #d6a77a;
+    color: #2f2f2f;
+    font-weight: 600;
+}
+
+.version-tag {
+    color: #909090;
+    font-size: 0.75rem;
+    padding-left: 0.4rem;
+    border-left: 1px solid rgba(230, 204, 178, 0.3);
+}
+
+.hero-v2 {
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: #060613;
+}
+
+.hero-v2-sky {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background: linear-gradient(to bottom,
+            #060613 0%,
+            #150f2e 32%,
+            #4a2140 58%,
+            #b0502f 80%,
+            #e8a35c 100%);
+}
+
+#hero-v2-canvas {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.dune-layer {
+    position: absolute;
+    left: -8%;
+    right: -8%;
+    bottom: 0;
+    width: 116%;
+    display: block;
+    pointer-events: none;
+}
+
+.dune-back {
+    height: 55%;
+    z-index: 2;
+    opacity: 0.85;
+}
+
+.dune-mid {
+    height: 45%;
+    z-index: 3;
+}
+
+.dune-front {
+    height: 36%;
+    z-index: 4;
+}
+
+@media (max-height: 500px) {
+    .dune-back {
+        height: 38%;
+    }
+
+    .dune-mid {
+        height: 30%;
+    }
+
+    .dune-front {
+        height: 24%;
+    }
+}
+
+#sand-canvas {
+    position: absolute;
+    inset: 0;
+    z-index: 4;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.dune-ridge-line {
+    fill: none;
+    stroke: rgba(243, 229, 201, 0.55);
+    stroke-width: 2;
+    animation: ridge-shimmer 6s ease-in-out infinite;
+}
+
+@keyframes ridge-shimmer {
+
+    0%,
+    100% {
+        opacity: 0.25;
+    }
+
+    50% {
+        opacity: 0.7;
+    }
+}
+
+.hero-v2-content {
+    position: relative;
+    z-index: 5;
+    padding: 0 1.25rem;
+    color: #f3e5c9;
+}
+
+.hero-v2-content h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 8vw, 3.75rem);
+    text-shadow: 0 0 1.875rem rgba(243, 229, 201, 0.35);
+    margin-bottom: 0.5rem;
+}
+
+.hero-v2-content p {
+    font-size: clamp(0.9rem, 3vw, 1.25rem);
+    letter-spacing: 0.05em;
+    color: #e6ccb2;
+}
+
+/* V2: sections darken as you scroll, dusk (hero horizon) into night (contact) */
+
+.v2-section {
+    position: relative;
+    overflow: hidden;
+    padding: clamp(3rem, 8vw, 6rem) clamp(1.25rem, 4vw, 2rem);
+    text-align: center;
+    margin-top: -1px;
+}
+
+/* Extra nudge where a section follows the hero's SVG dune specifically:
+   the dune's bottom edge is flat there (not wavy), so a couple more
+   pixels of overlap is safe and helps hide any SVG/CSS rounding seam
+   that's more visible on some mobile pixel ratios. */
+#v2-about {
+    margin-top: -3px;
+}
+
+.v2-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.06;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.v2-section h2 {
+    position: relative;
+    z-index: 1;
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.6rem, 6vw, 2.75rem);
+    margin: 0 0 2.5rem;
+}
+
+/* Same stops as the hero sky gradient, sampled progressively deeper as you scroll */
+
+.stage-dusk-1 {
+    background: linear-gradient(180deg, #c47a45 0%, #7a3b3a 100%);
+    color: #f6e6d2;
+}
+
+.stage-dusk-2 {
+    background: linear-gradient(180deg, #7a3b3a 0%, #4a2140 100%);
+    color: #f0dfc8;
+}
+
+.stage-night-1 {
+    background: linear-gradient(180deg, #4a2140 0%, #201336 100%);
+    color: #e9dcc9;
+}
+
+.stage-night-2 {
+    position: relative;
+    background: linear-gradient(180deg, #201336 0%, #0d0a1f 100%);
+    color: #e6ccb2;
+}
+
+.stage-night-2::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+        radial-gradient(1px 1px at 12% 30%, #f3e5c9 100%, transparent 100%),
+        radial-gradient(1px 1px at 35% 70%, #f3e5c9 100%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 58% 20%, #f3e5c9 100%, transparent 100%),
+        radial-gradient(1px 1px at 78% 55%, #f3e5c9 100%, transparent 100%),
+        radial-gradient(1px 1px at 90% 85%, #f3e5c9 100%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 20% 88%, #f3e5c9 100%, transparent 100%);
+    opacity: 0.22;
+}
+
+.stage-night-3 {
+    position: relative;
+    background: linear-gradient(180deg, #0d0a1f 0%, #060613 100%);
+    color: #e6ccb2;
+}
+
+.stage-night-3::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+        radial-gradient(1.5px 1.5px at 10% 20%, #f3e5c9 100%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 25% 60%, #f3e5c9 100%, transparent 100%),
+        radial-gradient(1px 1px at 40% 15%, #f3e5c9 100%, transparent 100%),
+        radial-gradient(1px 1px at 55% 75%, #f3e5c9 100%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 70% 30%, #f3e5c9 100%, transparent 100%),
+        radial-gradient(1px 1px at 85% 55%, #f3e5c9 100%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 95% 80%, #f3e5c9 100%, transparent 100%),
+        radial-gradient(1px 1px at 15% 85%, #f3e5c9 100%, transparent 100%),
+        radial-gradient(1px 1px at 65% 90%, #f3e5c9 100%, transparent 100%);
+    opacity: 0.55;
+}
+
+.sand-card {
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: clamp(1.75rem, 5vw, 3rem);
+    border-radius: 1.25rem;
+    background: rgba(0, 0, 0, 0.16);
+    box-shadow: 0 1rem 2.5rem rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+    text-align: left;
+}
+
+.sand-card h2 {
+    text-align: center;
+}
+
+.sand-card p {
+    font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+    line-height: 1.6;
+}
+
+.timeline {
+    position: relative;
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 0;
+    list-style: none;
+    text-align: left;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 7px;
+    top: 0.4rem;
+    bottom: 0.4rem;
+    width: 2px;
+    background: linear-gradient(180deg, rgba(243, 229, 201, 0.5), rgba(243, 229, 201, 0.1));
+}
+
+.timeline-step {
+    position: relative;
+    padding-left: 2.5rem;
+    margin-bottom: 2.25rem;
+}
+
+.timeline-step:last-child {
+    margin-bottom: 0;
+}
+
+.timeline-dot {
+    position: absolute;
+    left: 0;
+    top: 0.3rem;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #c47a45;
+    box-shadow: 0 0 0 4px rgba(196, 122, 69, 0.25);
+}
+
+.timeline-step-current .timeline-dot {
+    background: #e8a35c;
+    box-shadow: 0 0 0 5px rgba(232, 163, 92, 0.35), 0 0 20px rgba(232, 163, 92, 0.5);
+}
+
+.timeline-label {
+    display: block;
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1rem, 3vw, 1.15rem);
+    margin-bottom: 0.35rem;
+    color: #f3e5c9;
+}
+
+.timeline-step p {
+    margin: 0;
+    font-size: clamp(0.85rem, 2.5vw, 1rem);
+    line-height: 1.6;
+    opacity: 0.9;
+}
+
+.services-list-v2 {
+    list-style: none;
+    margin: 0 auto;
+    max-width: 1000px;
+    padding: 0;
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.sand-card-tight {
+    padding: 1.5rem;
+    cursor: default;
+    transition: transform 0.25s ease-in-out, box-shadow 0.3s ease;
+}
+
+.sand-card-tight:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 1.25rem 2.5rem rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.16);
+}
+
+.sand-card-tight h3 {
+    margin: 0 0 0.5rem;
+    font-size: clamp(1rem, 4vw, 1.35rem);
+}
+
+.sand-card-tight p {
+    font-size: clamp(0.8rem, 3vw, 1rem);
+    margin: 0;
+}
+
+.contact-section-v2 .contact-form button {
+    background-color: #e8a35c;
+    color: #1a0f0a;
+}
+
+.contact-section-v2 {
+    position: relative;
+    z-index: 1;
+}
+
+.contact-section-v2 .contact-form {
+    position: relative;
+    z-index: 1;
+}
+
+/* Technologies reuses V1's grid, but the cards get the same warm
+   sandstone treatment as the rest of V2 instead of V1's flat grey. */
+
+#v2-technologies .tech-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: clamp(1.5rem, 4vw, 2.25rem);
+    max-width: 780px;
+}
+
+#v2-technologies .tech-card {
+    flex: 0 1 130px;
+    min-width: 0;
+    box-sizing: border-box;
+}
+
+@media (max-width: 640px) {
+    #v2-technologies .tech-grid {
+        gap: 0.75rem;
+    }
+
+    #v2-technologies .tech-card {
+        flex-basis: calc(33.333% - 0.6rem);
+        padding: 0.75rem 0.5rem;
+        min-width: 0;
+        box-sizing: border-box;
+    }
+
+    #v2-technologies .tech-card img {
+        width: clamp(2em, 8vw, 3em);
+        height: clamp(2em, 8vw, 3em);
+    }
+
+    #v2-technologies .tech-card p {
+        font-size: 0.75rem;
+    }
+}
+
+#v2-technologies .tech-card {
+    padding: clamp(1rem, 3vw, 1.75rem) clamp(0.75rem, 2vw, 1.25rem);
+    background: radial-gradient(circle at 50% 30%, rgba(232, 163, 92, 0.1), rgba(0, 0, 0, 0.22) 70%);
+    box-shadow: 0 1rem 2.5rem rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.12), 0 0 0 1px rgba(232, 163, 92, 0.2);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+#v2-technologies a {
+    text-decoration: none;
+    color: inherit;
+}
+
+#v2-technologies .tech-card img {
+    width: clamp(3.25em, 9vw, 4.25em);
+    height: clamp(3.25em, 9vw, 4.25em);
+    transition: transform 0.25s ease;
+}
+
+#v2-technologies .tech-card:hover {
+    filter: none;
+    outline: none;
+    transform: translateY(-6px) scale(1.04);
+    box-shadow: 0 1.5rem 3rem rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.18), 0 0 0 1.5px rgba(232, 163, 92, 0.6), 0 0 1.75rem rgba(232, 163, 92, 0.25);
+}
+
+#v2-technologies .tech-card:hover img {
+    transform: scale(1.08);
+}
+
+#v2-technologies .tech-card:active {
+    filter: none;
+    transform: translateY(-2px) scale(1.01);
+}
+
+#v2-technologies .tech-card p {
+    color: inherit;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+}
+
+/* Projects: image + always-visible title/tags, chevron reveals more detail */
+
+.project-grid-v2 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+    padding: clamp(0.5rem, 5vw, 3rem) clamp(1.25rem, 3vw, 2rem);
+}
+
+.project-card {
+    flex: 1 1 calc(33.333% - 1.334rem);
+    max-width: calc(33.333% - 1.334rem);
+    min-width: 0;
+    border-radius: 0.9375rem;
+    overflow: hidden;
+    background: rgba(0, 0, 0, 0.22);
+    box-shadow: 0 1rem 2.5rem rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.12), 0 0 0 1px rgba(232, 163, 92, 0.2);
+    transition: box-shadow 0.25s ease;
+}
+
+.project-card:hover {
+    box-shadow: 0 1.5rem 3rem rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.18), 0 0 0 1px rgba(232, 163, 92, 0.45);
+}
+
+.project-image-link {
+    display: block;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+}
+
+.project-card-img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.4s ease;
+}
+
+.project-image-link:hover .project-card-img {
+    transform: scale(1.06);
+}
+
+.project-info {
+    text-align: left;
+}
+
+.project-expand-btn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    width: 100%;
+    padding: 0.9rem 1.1rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    font-family: 'Poppins', sans-serif;
+    color: inherit;
+}
+
+.project-info-text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+}
+
+.project-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(0.95rem, 2.5vw, 1.1rem);
+    color: #f3e5c9;
+}
+
+.project-tags {
+    font-size: 0.78rem;
+    color: #e6ccb2;
+    opacity: 0.85;
+}
+
+.chevron-icon {
+    flex-shrink: 0;
+    width: 0.7rem;
+    height: 0.7rem;
+    border-right: 2px solid #e8a35c;
+    border-bottom: 2px solid #e8a35c;
+    transform: rotate(45deg);
+    transition: transform 0.25s ease;
+}
+
+.project-card.expanded .chevron-icon {
+    transform: rotate(-135deg);
+}
+
+.project-details {
+    max-height: 0;
+    overflow: hidden;
+    padding: 0 1.1rem;
+    transition: max-height 0.3s ease, padding 0.3s ease;
+}
+
+.project-card.expanded .project-details {
+    max-height: 12rem;
+    padding: 0 1.1rem 1.1rem;
+}
+
+.project-details p {
+    margin: 0 0 0.75rem;
+    font-size: 0.85rem;
+    line-height: 1.55;
+    color: #e6ccb2;
+    opacity: 0.95;
+}
+
+.project-details-link {
+    display: inline-block;
+    font-size: 0.85rem;
+    color: #e8a35c;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(232, 163, 92, 0.4);
+    transition: color 0.2s, border-color 0.2s;
+}
+
+.project-details-link:hover {
+    color: #f3e5c9;
+    border-color: #f3e5c9;
+}
+
+@media (max-width: 768px) {
+    .project-card {
+        flex-basis: calc(50% - 1rem);
+        max-width: calc(50% - 1rem);
+    }
+}
+
+@media (max-width: 480px) {
+    .project-card {
+        flex-basis: 100%;
+        max-width: 100%;
+    }
+}
+
+#v2-contact .contact-form input,
+#v2-contact .contact-form textarea {
+    background: rgba(0, 0, 0, 0.22);
+    color: #f6e6d2;
+}
+
+#v2-contact .contact-form input::placeholder,
+#v2-contact .contact-form textarea::placeholder {
+    color: rgba(246, 230, 210, 0.55);
+}
+
+
+.contact-tagline {
+    font-size: clamp(1rem, 3vw, 1.3rem);
+    margin: -1.5rem 0 2.5rem;
+    opacity: 0.85;
+}
+
+.contact-beacon {
+    display: inline-block;
+    font-family: 'Poppins', sans-serif;
+    font-size: clamp(0.95rem, 2.5vw, 1.1rem);
+    padding: 1.1rem 2.75rem;
+    border: none;
+    border-radius: 999px;
+    background: #e8a35c;
+    color: #1a0f0a;
+    cursor: pointer;
+    box-shadow: 0 0 1.875rem rgba(232, 163, 92, 0.35), 0 0.5rem 1.5rem rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    animation: beacon-pulse 3s ease-in-out infinite;
+}
+
+.contact-beacon:hover {
+    box-shadow: 0 0 2.5rem rgba(232, 163, 92, 0.55), 0 0.75rem 2rem rgba(0, 0, 0, 0.35);
+}
+
+@keyframes beacon-pulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 1.875rem rgba(232, 163, 92, 0.35), 0 0.5rem 1.5rem rgba(0, 0, 0, 0.3);
+    }
+
+    50% {
+        box-shadow: 0 0 2.75rem rgba(232, 163, 92, 0.55), 0 0.5rem 1.5rem rgba(0, 0, 0, 0.3);
+    }
+}
+
+.contact-form-v2 {
+    margin-top: 2rem;
+    align-items: center;
+}
+
+.contact-fields {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+    margin-bottom: 1.5rem;
+}
+
+.contact-fields[hidden] {
+    display: none;
+}
+
+.contact-form.contact-form-v2 input,
+.contact-form.contact-form-v2 textarea {
+    background: rgba(0, 0, 0, 0.22);
+    border: 1px solid rgba(232, 163, 92, 0.35);
+    border-radius: 0.75rem;
+    padding: 0.85rem 1rem;
+}
+
+.contact-form.contact-form-v2 input:focus,
+.contact-form.contact-form-v2 textarea:focus {
+    outline: none;
+    border-color: #e8a35c;
+}
+
+.contact-form.contact-form-v2 button {
+    align-self: center;
+    margin-top: 1rem;
+    padding: 1rem 2.5rem;
+    border-radius: 0.5rem;
+    text-transform: none;
+    letter-spacing: 0.02em;
+    box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.3);
+}
+
+.contact-form.contact-form-v2 button:hover {
+    filter: none;
+    outline: none;
+    box-shadow: 0 0 1.875rem rgba(232, 163, 92, 0.55);
+}
+
+.contact-form.contact-form-v2 button:active {
+    filter: none;
+    transform: translateY(0);
+    box-shadow: none;
+}
+
+.contact-alt-link {
+    display: inline-block;
+    margin-top: 2rem;
+    color: #e6ccb2;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(230, 204, 178, 0.4);
+    padding-bottom: 2px;
+    transition: color 0.2s, border-color 0.2s;
+}
+
+.contact-alt-link:hover {
+    color: #e8a35c;
+    border-color: #e8a35c;
+}
+
+@media (max-width: 900px) {
+    .services-list-v2 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .services-list-v2 {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .version-switcher {
+        top: 1rem;
+        left: 1rem;
+        padding: 0.3rem 0.4rem;
+    }
+
+    .version-btn {
+        font-size: 0.75rem;
+        padding: 0.25rem 0.5rem;
+    }
 }
 
 @media (max-width: 768px) {
@@ -96,7 +939,67 @@ html {
     }
 
     .burger {
-        display: block;
+        display: flex;
+    }
+
+    /* .navbar.v2-mode's pill styling (border-radius, tight padding) is
+       meant for the desktop floating nav only — without this reset it
+       overrides the full-screen mobile menu's shape/spacing above,
+       since it has higher specificity. */
+    .navbar.v2-mode {
+        border-radius: 0;
+        padding: 6rem 0 2rem;
+    }
+
+    /* V2 only: smooth fade/slide open instead of V1's instant display toggle.
+       Needs display:flex at all times (display can't be transitioned), so
+       the closed state is hidden via opacity/visibility/pointer-events instead. */
+    .navbar.v2-mode {
+        display: flex;
+        opacity: 0;
+        transform: translateY(-0.75rem);
+        pointer-events: none;
+        visibility: hidden;
+        transition: opacity 0.35s ease, transform 0.35s ease, visibility 0s linear 0.35s;
+    }
+
+    .navbar.v2-mode.show {
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: auto;
+        visibility: visible;
+        transition: opacity 0.35s ease, transform 0.35s ease;
+    }
+
+    .navbar.v2-mode ul li {
+        opacity: 0;
+        transform: translateY(0.75rem);
+        transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    .navbar.v2-mode.show ul li {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .navbar.v2-mode.show ul li:nth-of-type(1) {
+        transition-delay: 0.08s;
+    }
+
+    .navbar.v2-mode.show ul li:nth-of-type(2) {
+        transition-delay: 0.14s;
+    }
+
+    .navbar.v2-mode.show ul li:nth-of-type(3) {
+        transition-delay: 0.2s;
+    }
+
+    .navbar.v2-mode.show ul li:nth-of-type(4) {
+        transition-delay: 0.26s;
+    }
+
+    .navbar.v2-mode.show ul li:nth-of-type(5) {
+        transition-delay: 0.32s;
     }
 }
 
@@ -204,6 +1107,60 @@ footer {
 
     100% {
         opacity: 0;
+    }
+}
+
+/* V2 only: single centered scroll cue below the subtitle instead of V1's
+   two edge-hugging chevron groups, which overlapped the title's letters */
+.hero-v2-scroll-cue {
+    margin-top: clamp(1.5rem, 4vw, 2.5rem);
+    opacity: 0;
+    transform: translateY(-0.75rem);
+    animation: heroV2ScrollCueIn 1s ease forwards;
+    animation-delay: 2s;
+}
+
+.hero-v2-scroll-cue .chevron-group {
+    flex-direction: column;
+    gap: 0.25rem;
+    margin: 0 auto;
+}
+
+@keyframes heroV2ScrollCueIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* V2 only: smoother continuous wave instead of V1's blink-with-dead-gap pulse */
+#v2-content .chevron {
+    opacity: 0.2;
+    animation: pulseChevronV2 1.6s ease-in-out infinite;
+}
+
+#v2-content .chevron:nth-child(1) {
+    animation-delay: 0s;
+}
+
+#v2-content .chevron:nth-child(2) {
+    animation-delay: 0.15s;
+}
+
+#v2-content .chevron:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+@keyframes pulseChevronV2 {
+    0%,
+    100% {
+        opacity: 0.2;
+        transform: translateY(-0.15vw) rotate(-45deg);
+    }
+
+    50% {
+        opacity: 1;
+        transform: translateY(0.15vw) rotate(-45deg);
     }
 }
 
