@@ -170,7 +170,7 @@ if (canvas) {
         const t = clock.getElapsedTime();
 
         moonGroup.position.y = 2.2 + Math.sin(t * 0.15) * 0.1;
-        moon.rotation.y = t * 0.06;
+        moon.rotation.y = t * 0.14;
 
         const rotatedLightOffset = moonLightBaseOffset.clone().applyAxisAngle(new THREE.Vector3(0, 1, 0), moon.rotation.y);
         moonLight.position.copy(moonGroup.position).add(rotatedLightOffset);
