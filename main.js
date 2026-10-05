@@ -153,3 +153,10 @@ window.addEventListener('resize', () => {
 });
 
 animate();
+
+// V2 hero (moon/dunes/sand): dynamic import so Vite's build actually
+// code-splits and bundles it (including its own asset imports) instead of
+// silently leaving it unprocessed, which happened when this import lived
+// in the non-module inline <script> in index.html. Self-guarded via its
+// own `if (canvas)` check, so this is a no-op whenever V2 isn't active.
+import('./hero-v2.js');
