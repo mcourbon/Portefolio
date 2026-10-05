@@ -325,20 +325,12 @@
             <div class="hero-v2-content">
                 <h1 class="fade-in">Marc-Antoine Courbon</h1>
                 <p class="slide-in-from-bot">Développeur Web / Créateur 3D</p>
-            </div>
-
-            <div class="scroll-text scroll-left chevron-left-slide-in-from-top">
-                <div class="chevron-group">
-                    <div class="chevron"></div>
-                    <div class="chevron"></div>
-                    <div class="chevron"></div>
-                </div>
-            </div>
-            <div class="scroll-text scroll-right chevron-right-slide-in-from-top">
-                <div class="chevron-group">
-                    <div class="chevron"></div>
-                    <div class="chevron"></div>
-                    <div class="chevron"></div>
+                <div class="hero-v2-scroll-cue">
+                    <div class="chevron-group">
+                        <div class="chevron"></div>
+                        <div class="chevron"></div>
+                        <div class="chevron"></div>
+                    </div>
                 </div>
             </div>
         </header>
@@ -733,7 +725,10 @@
         // V2 nav: sliding hover pill behind the active/hovered link
         const navList = document.querySelector('.navbar ul');
         const navPill = document.getElementById('navbar-pill');
-        if (navList && navPill) {
+        // Touch devices emit a synthetic mouseenter right before the tap's
+        // click fires, flashing the pill at the tapped link just as the menu
+        // closes. Only wire this up for pointers that can actually hover.
+        if (navList && navPill && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
             navList.querySelectorAll('a').forEach(link => {
                 link.addEventListener('mouseenter', () => {
                     if ((localStorage.getItem('portfolio-version') || 'v1') !== 'v2') return;

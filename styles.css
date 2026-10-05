@@ -8,6 +8,15 @@ body {
     overflow-x: hidden;
 }
 
+/* V2 only: kill the default mobile tap-highlight square */
+#v2-content,
+#v2-content *,
+.navbar.v2-mode,
+.navbar.v2-mode *,
+.burger.v2-mode {
+    -webkit-tap-highlight-color: transparent;
+}
+
 html {
     scroll-behavior: smooth;
 }
@@ -941,6 +950,57 @@ html {
         border-radius: 0;
         padding: 6rem 0 2rem;
     }
+
+    /* V2 only: smooth fade/slide open instead of V1's instant display toggle.
+       Needs display:flex at all times (display can't be transitioned), so
+       the closed state is hidden via opacity/visibility/pointer-events instead. */
+    .navbar.v2-mode {
+        display: flex;
+        opacity: 0;
+        transform: translateY(-0.75rem);
+        pointer-events: none;
+        visibility: hidden;
+        transition: opacity 0.35s ease, transform 0.35s ease, visibility 0s linear 0.35s;
+    }
+
+    .navbar.v2-mode.show {
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: auto;
+        visibility: visible;
+        transition: opacity 0.35s ease, transform 0.35s ease;
+    }
+
+    .navbar.v2-mode ul li {
+        opacity: 0;
+        transform: translateY(0.75rem);
+        transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    .navbar.v2-mode.show ul li {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .navbar.v2-mode.show ul li:nth-of-type(1) {
+        transition-delay: 0.08s;
+    }
+
+    .navbar.v2-mode.show ul li:nth-of-type(2) {
+        transition-delay: 0.14s;
+    }
+
+    .navbar.v2-mode.show ul li:nth-of-type(3) {
+        transition-delay: 0.2s;
+    }
+
+    .navbar.v2-mode.show ul li:nth-of-type(4) {
+        transition-delay: 0.26s;
+    }
+
+    .navbar.v2-mode.show ul li:nth-of-type(5) {
+        transition-delay: 0.32s;
+    }
 }
 
 header {
@@ -1047,6 +1107,60 @@ footer {
 
     100% {
         opacity: 0;
+    }
+}
+
+/* V2 only: single centered scroll cue below the subtitle instead of V1's
+   two edge-hugging chevron groups, which overlapped the title's letters */
+.hero-v2-scroll-cue {
+    margin-top: clamp(1.5rem, 4vw, 2.5rem);
+    opacity: 0;
+    transform: translateY(-0.75rem);
+    animation: heroV2ScrollCueIn 1s ease forwards;
+    animation-delay: 2s;
+}
+
+.hero-v2-scroll-cue .chevron-group {
+    flex-direction: column;
+    gap: 0.25rem;
+    margin: 0 auto;
+}
+
+@keyframes heroV2ScrollCueIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* V2 only: smoother continuous wave instead of V1's blink-with-dead-gap pulse */
+#v2-content .chevron {
+    opacity: 0.2;
+    animation: pulseChevronV2 1.6s ease-in-out infinite;
+}
+
+#v2-content .chevron:nth-child(1) {
+    animation-delay: 0s;
+}
+
+#v2-content .chevron:nth-child(2) {
+    animation-delay: 0.15s;
+}
+
+#v2-content .chevron:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+@keyframes pulseChevronV2 {
+    0%,
+    100% {
+        opacity: 0.2;
+        transform: translateY(-0.15vw) rotate(-45deg);
+    }
+
+    50% {
+        opacity: 1;
+        transform: translateY(0.15vw) rotate(-45deg);
     }
 }
 
