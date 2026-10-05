@@ -207,22 +207,30 @@ if (sandCanvas) {
     const ctx = sandCanvas.getContext('2d');
     let width;
     let height;
+    // On phones the same pixel speed/spread reads as way too fast and too
+    // tall relative to the smaller dune art underneath, so slow it down and
+    // keep grains confined closer to the dunes instead of the full hero.
+    let isMobile = window.matchMedia('(max-width: 768px)').matches;
 
     function resizeSand() {
         width = sandCanvas.width = window.innerWidth;
         height = sandCanvas.height = window.innerHeight;
+        isMobile = window.matchMedia('(max-width: 768px)').matches;
     }
     resizeSand();
     window.addEventListener('resize', resizeSand);
 
     function spawnGrain(anywhereOnX) {
         const depth = Math.random(); // 0 = far/small/slow, 1 = near/big/fast
+        const yStart = isMobile ? 0.72 : 0.52;
+        const ySpread = isMobile ? 0.26 : 0.46;
+        const speedScale = isMobile ? 0.45 : 1;
         return {
             x: anywhereOnX ? Math.random() * width : -20,
-            y: height * (0.52 + Math.random() * 0.46),
+            y: height * (yStart + Math.random() * ySpread),
             depth,
             size: 0.6 + depth * 2.2,
-            speed: 18 + depth * 55,
+            speed: (18 + depth * 55) * speedScale,
             driftPhase: Math.random() * Math.PI * 2,
             driftSpeed: 0.5 + Math.random() * 1,
             opacity: 0.12 + depth * 0.3,
