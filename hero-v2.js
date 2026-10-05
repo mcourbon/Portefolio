@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import moonTextureUrl from './assets/moon-texture.jpg';
 
 const canvas = document.getElementById('hero-v2-canvas');
 
@@ -66,7 +67,7 @@ if (canvas) {
         })
     );
 
-    new THREE.TextureLoader().load('assets/moon-texture.jpg', (loaded) => {
+    new THREE.TextureLoader().load(moonTextureUrl, (loaded) => {
         const img = loaded.image;
         const c = document.createElement('canvas');
         c.width = img.width;

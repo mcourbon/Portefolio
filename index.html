@@ -670,7 +670,7 @@
                 }
 
                 const hash = link.getAttribute('href').slice(1);
-                const activeVersion = localStorage.getItem('portfolio-version') || 'v1';
+                const activeVersion = localStorage.getItem('portfolio-version') || 'v2';
                 if (activeVersion === 'v2') {
                     const target = document.getElementById('v2-' + hash);
                     if (target) {
@@ -692,7 +692,6 @@
         const navbarEl = document.querySelector('.navbar');
         const burgerEl = document.querySelector('.burger');
 
-        let heroV2Loaded = false;
         function setVersion(version) {
             localStorage.setItem('portfolio-version', version);
             v1Content.classList.toggle('active', version === 'v1');
@@ -701,17 +700,13 @@
             versionTag.textContent = VERSIONS[version];
             navbarEl.classList.toggle('v2-mode', version === 'v2');
             burgerEl.classList.toggle('v2-mode', version === 'v2');
-            if (version === 'v2' && !heroV2Loaded) {
-                heroV2Loaded = true;
-                import('./hero-v2.js');
-            }
         }
 
         versionButtons.forEach(btn => {
             btn.addEventListener('click', () => setVersion(btn.dataset.version));
         });
 
-        setVersion(localStorage.getItem('portfolio-version') || 'v1');
+        setVersion(localStorage.getItem('portfolio-version') || 'v2');
 
         // V2 projects: chevron toggles the "en savoir plus" panel per card
         document.querySelectorAll('.project-expand-btn').forEach(btn => {
@@ -731,7 +726,7 @@
         if (navList && navPill && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
             navList.querySelectorAll('a').forEach(link => {
                 link.addEventListener('mouseenter', () => {
-                    if ((localStorage.getItem('portfolio-version') || 'v1') !== 'v2') return;
+                    if ((localStorage.getItem('portfolio-version') || 'v2') !== 'v2') return;
                     const listRect = navList.getBoundingClientRect();
                     const linkRect = link.getBoundingClientRect();
                     navPill.style.left = (linkRect.left - listRect.left) + 'px';
@@ -747,7 +742,7 @@
         // V2 nav: hide on scroll down, reveal on scroll up (V1 keeps the classic always-visible nav)
         let lastScrollY = window.scrollY;
         window.addEventListener('scroll', () => {
-            if ((localStorage.getItem('portfolio-version') || 'v1') !== 'v2') return;
+            if ((localStorage.getItem('portfolio-version') || 'v2') !== 'v2') return;
             const currentY = window.scrollY;
             const scrollingDown = currentY > lastScrollY && currentY > 120;
             if (!navbarEl.classList.contains('show')) {
