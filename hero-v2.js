@@ -122,9 +122,9 @@ if (canvas) {
         scene.add(points);
         starLayers.push({ material, baseOpacity, phase: Math.random() * Math.PI * 2, speed: 0.3 + Math.random() * 0.4 });
     }
-    createStarLayer(130, 26, 9, 0.045, 0.8);
-    createStarLayer(90, 26, 8, 0.03, 0.5);
-    createStarLayer(60, 26, 7, 0.02, 0.3);
+    createStarLayer(170, 26, 9, 0.045, 0.8);
+    createStarLayer(120, 26, 8, 0.03, 0.5);
+    createStarLayer(80, 26, 7, 0.02, 0.3);
 
     scene.add(new THREE.AmbientLight(0x3a2f60, 0.35));
     // The light orbits with the moon's own rotation (see animate()) so the
