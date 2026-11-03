@@ -190,6 +190,10 @@ html {
     transition: background 0.2s, color 0.2s;
 }
 
+a.version-btn {
+    text-decoration: none;
+}
+
 .version-btn:hover {
     color: #ffffff;
 }

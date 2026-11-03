@@ -1,7 +1,7 @@
 // Script d'interface des V1 et V2 (menu, sélecteur de version, cartes projets, barre de navigation).
 // Repris tel quel de l'ancien <script> de index.html. `toggleMenu` reste global : le bouton burger
 // l'appelle par son attribut onclick.
-export function initLegacyUI() {
+export function initLegacyUI(initialVersion) {
     window.toggleMenu = function toggleMenu() {
         const navbar = document.querySelector('.navbar');
         const burger = document.querySelector('.burger');
@@ -44,6 +44,8 @@ export function initLegacyUI() {
 
     function setVersion(version) {
         localStorage.setItem('portfolio-version', version);
+        // Chaque version a sa propre adresse (/v1, /v2) : on la garde à jour sans recharger.
+        if (location.pathname !== '/' + version) history.replaceState(null, '', '/' + version + location.hash);
         v1Content.classList.toggle('active', version === 'v1');
         v2Content.classList.toggle('active', version === 'v2');
         versionButtons.forEach(btn => btn.classList.toggle('active', btn.dataset.version === version));
@@ -56,7 +58,7 @@ export function initLegacyUI() {
         btn.addEventListener('click', () => setVersion(btn.dataset.version));
     });
 
-    setVersion(localStorage.getItem('portfolio-version') || 'v2');
+    setVersion(initialVersion);
 
     // V2 projects: chevron toggles the "en savoir plus" panel per card
     document.querySelectorAll('.project-expand-btn').forEach(btn => {

@@ -1,7 +1,9 @@
 import "@/legacy/styles.css";
 
+// V1 et V2 : archives de l'ancien portfolio, gardées telles quelles et non indexées.
 export const metadata = {
   title: "mcourbon",
+  robots: { index: false, follow: true },
 };
 
 export const viewport = {
@@ -9,7 +11,7 @@ export const viewport = {
   initialScale: 1,
 };
 
-export default function RootLayout({ children }) {
+export default function LegacyLayout({ children }) {
   return (
     <html lang="fr">
       <head>
