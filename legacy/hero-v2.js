@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import moonTextureUrl from './assets/moon-texture.jpg';
+const moonTextureUrl = '/assets/moon-texture.jpg';
 
 const canvas = document.getElementById('hero-v2-canvas');
 
