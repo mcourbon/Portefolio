@@ -6,7 +6,16 @@ const canvas = document.getElementById('hero-v2-canvas');
 if (canvas) {
     const scene = new THREE.Scene();
 
-    let aspect = window.innerWidth / window.innerHeight;
+    // Size from the hero (100vh), not the window: on mobile the window's
+    // height changes when the address bar hides on scroll, which resized
+    // the scene and made the moon jump. Falls back to the window while the
+    // hero is hidden (V1 active).
+    const heroSize = () => [
+        canvas.clientWidth || window.innerWidth,
+        canvas.clientHeight || window.innerHeight,
+    ];
+    let [width, height] = heroSize();
+    let aspect = width / height;
     const frustumSize = 10;
     const camera = new THREE.OrthographicCamera(
         frustumSize * aspect / -2,
@@ -20,8 +29,8 @@ if (canvas) {
     camera.lookAt(0, 0, 0);
 
     const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
-    renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setSize(width, height, false);
 
     // Soft radial glow texture used as an additive halo behind the moon
     function makeGlowTexture() {
@@ -189,13 +198,16 @@ if (canvas) {
     animate();
 
     window.addEventListener('resize', () => {
-        aspect = window.innerWidth / window.innerHeight;
+        const [newWidth, newHeight] = heroSize();
+        if (newWidth === width && newHeight === height) return;
+        [width, height] = [newWidth, newHeight];
+        aspect = width / height;
         camera.left = -frustumSize * aspect / 2;
         camera.right = frustumSize * aspect / 2;
         camera.top = frustumSize / 2;
         camera.bottom = -frustumSize / 2;
         camera.updateProjectionMatrix();
-        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setSize(width, height, false);
         updateMoonX();
     });
 }
