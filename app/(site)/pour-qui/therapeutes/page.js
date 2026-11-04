@@ -126,7 +126,9 @@ export default function Therapeutes() {
           <OfferCard offre={suivi} />
         </div>
         <p className="mx-auto mt-10 max-w-2xl text-center leading-relaxed text-brun-doux">
-          Vous voulez apparaître sur plusieurs prestations ou plusieurs villes, avec des articles de blog ? C'est l'offre{" "}
+          Vous voulez juste que votre site reste à jour, sans le blog ni la fiche Google ? La{" "}
+          <Link href="/offres#maintenance" className="font-medium text-terre hover:underline">Maintenance</Link> à 49 € par mois
+          suffit. Vous voulez apparaître sur plusieurs prestations ou plusieurs villes, avec des articles de blog ? C'est l'offre{" "}
           <Link href="/offres#visibilite" className="font-medium text-terre hover:underline">Visibilité</Link>, à partir de
           3 500 €. Ou voir <Link href="/offres" className="font-medium text-terre hover:underline">toutes les offres</Link>.
         </p>

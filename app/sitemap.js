@@ -7,7 +7,6 @@ const PAGES = {
   "/": "2026-11-04",
   "/realisations": "2026-11-03",
   "/offres": "2026-11-03",
-  "/pour-qui": "2026-11-03",
   "/pour-qui/therapeutes": "2026-11-03",
   "/pour-qui/artistes-photographes": "2026-11-03",
   "/pour-qui/artisans": "2026-11-03",

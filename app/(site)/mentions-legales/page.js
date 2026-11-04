@@ -22,6 +22,8 @@ export default function MentionsLegales() {
               <>
                 <br />
                 SIRET : {LEGAL.siret}
+                <br />
+                TVA non applicable, article 293 B du CGI
               </>
             )}
             <br />

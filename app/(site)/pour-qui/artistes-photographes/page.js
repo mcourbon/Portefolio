@@ -44,8 +44,10 @@ export default function ArtistesPhotographes() {
       apresOffres={
         <>
           Vous voulez vendre vos tirages ou vos œuvres en ligne, avec paiement et livraison ? C'est l'offre{" "}
-          <Link href="/pour-qui/boutiques-en-ligne" className="font-medium text-terre hover:underline">Boutique</Link>. Ou
-          voir <Link href="/offres" className="font-medium text-terre hover:underline">toutes les offres</Link>.
+          <Link href="/pour-qui/boutiques-en-ligne" className="font-medium text-terre hover:underline">Boutique</Link>. Pour
+          ajouter vos nouvelles œuvres sans vous en occuper, il y a la{" "}
+          <Link href="/offres#maintenance" className="font-medium text-terre hover:underline">Maintenance</Link> à 49 € par
+          mois. Ou voir <Link href="/offres" className="font-medium text-terre hover:underline">toutes les offres</Link>.
         </>
       }
       faq={[

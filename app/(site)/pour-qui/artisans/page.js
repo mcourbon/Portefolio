@@ -43,9 +43,11 @@ export default function Artisans() {
       offres={{ titre: "Ce que je propose *aux artisans*", ids: ["essentiel", "visibilite"], enAvant: "visibilite" }}
       apresOffres={
         <>
-          Une fois le site en ligne, la formule{" "}
-          <Link href="/offres#suivi" className="font-medium text-terre hover:underline">Suivi</Link> à 290 € par mois garde
-          votre fiche Google et vos réalisations à jour. Ou voir{" "}
+          Une fois le site en ligne, la{" "}
+          <Link href="/offres#maintenance" className="font-medium text-terre hover:underline">Maintenance</Link> à 49 € par mois
+          le garde à jour, et le{" "}
+          <Link href="/offres#suivi" className="font-medium text-terre hover:underline">Suivi</Link> à 290 € par mois s'occupe
+          aussi de votre fiche Google et de vos réalisations. Ou voir{" "}
           <Link href="/offres" className="font-medium text-terre hover:underline">toutes les offres</Link>.
         </>
       }

@@ -26,7 +26,7 @@ export function LinkButton({ href, children, clair = false, className = "" }) {
 // En-tête de section centré : petit libellé, ornement, titre.
 export function Titre({ label, children, intro, clair = false, className = "" }) {
   return (
-    <div className={`mx-auto max-w-3xl text-center ${className}`}>
+    <div data-anim="titre" className={`mx-auto max-w-3xl text-center ${className}`}>
       {label && <p className={`text-sm font-medium uppercase tracking-[0.25em] ${clair ? "text-or" : "text-terre"}`}>{label}</p>}
       <Ornement className="mt-4 justify-center" />
       <h2 className={`mt-5 font-titre text-4xl font-bold leading-tight sm:text-5xl ${clair ? "text-creme" : "text-brun"}`}>{children}</h2>
@@ -64,12 +64,13 @@ export function OfferCard({ offre, className = "" }) {
   return (
     <article
       id={offre.id}
+      data-anim="offre"
       className={`arche-basse relative flex scroll-mt-24 flex-col border bg-creme px-7 pb-8 pt-20 text-center ${
         offre.featured ? "border-terre shadow-[0_20px_50px_-25px_rgba(143,61,29,0.6)]" : "border-or/50"
       } ${className}`}
     >
       <Etoile className={`absolute left-1/2 top-9 h-6 w-6 -translate-x-1/2 ${offre.featured ? "text-terre" : "text-or"}`} />
-      {offre.featured && <p className="mb-2 text-xs font-medium uppercase tracking-[0.2em] text-terre">La plus demandée</p>}
+      {offre.featured && <p className="mb-2 text-xs font-medium uppercase tracking-[0.2em] text-terre">Recommandée</p>}
       <h3 className="font-titre text-3xl font-bold">{offre.name}</h3>
       <p className="mt-2 font-titre text-2xl font-semibold text-terre">{offre.price}</p>
       <p className="mt-1 text-xs text-brun-doux">{offre.delay}</p>
@@ -92,10 +93,10 @@ export function OfferCard({ offre, className = "" }) {
 // Un projet comme un tableau encadré : la capture d'abord, un cadre décalé derrière, le texte dessous.
 export function ProjectCard({ projet, priority = false }) {
   return (
-    <article className="group flex flex-col">
+    <article data-anim="projet" className="group flex flex-col">
       <a href={projet.url} target="_blank" rel="noopener" className="relative mr-3 mb-3 block">
-        <span aria-hidden="true" className="absolute inset-0 translate-x-3 translate-y-3 rounded-2xl border border-terre/45 transition-transform duration-300 group-hover:translate-x-1.5 group-hover:translate-y-1.5" />
-        <span className="relative block overflow-hidden rounded-2xl border border-or/50 bg-sable-fonce shadow-[0_18px_40px_-24px_rgba(43,27,23,0.55)]">
+        <span data-anim-cadre aria-hidden="true" className="absolute inset-0 translate-x-3 translate-y-3 rounded-2xl border border-terre/45 transition-transform duration-300 group-hover:translate-x-1.5 group-hover:translate-y-1.5" />
+        <span data-anim-image className="relative block overflow-hidden rounded-2xl border border-or/50 bg-sable-fonce shadow-[0_18px_40px_-24px_rgba(43,27,23,0.55)]">
         <Image
           src={projet.image}
           alt={`Page d'accueil du site ${projet.title}`}
@@ -121,7 +122,7 @@ export function ProjectCard({ projet, priority = false }) {
 export function CallBanner({ title, children }) {
   return (
     <section className="ciel-nuit relative overflow-hidden">
-      <div className="mx-auto max-w-3xl px-4 py-24 text-center sm:px-6 sm:py-28">
+      <div data-anim="titre" className="mx-auto max-w-3xl px-4 py-24 text-center sm:px-6 sm:py-28">
         <Etoile className="mx-auto h-8 w-8 text-or" />
         <h2 className="mt-6 font-titre text-4xl font-bold leading-tight text-creme sm:text-5xl">
           {title ?? (

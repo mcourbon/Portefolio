@@ -1,8 +1,9 @@
-import { preconnect } from "react-dom";
 import { El_Messiri, Poppins, Amiri } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/site/Header";
 import Footer from "@/components/site/Footer";
+import Animations from "@/components/site/Animations";
+import RendezVous from "@/components/site/RendezVous";
 import { SITE } from "@/lib/site";
 
 const messiri = El_Messiri({ subsets: ["latin"], weight: ["500", "600", "700"], variable: "--font-messiri", display: "swap" });
@@ -24,18 +25,23 @@ export const viewport = {
 };
 
 export default function SiteLayout({ children }) {
-  // La prise de rendez-vous (Cal.com) s'ouvre dans le site : on prépare la connexion pour qu'elle s'affiche plus vite.
-  preconnect("https://app.cal.com");
-  preconnect("https://cal.com");
   return (
-    <html lang="fr" className={`${messiri.variable} ${poppins.variable} ${amiri.variable}`}>
+    <html lang="fr" data-scroll-behavior="smooth" suppressHydrationWarning className={`${messiri.variable} ${poppins.variable} ${amiri.variable}`}>
       <body className="font-sans antialiased">
+        {/* Cache le haut de page avant l'arrivée des animations, pour éviter qu'il clignote (voir globals.css). */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: "if(!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('anim')",
+          }}
+        />
         <a href="#contenu" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[70] focus:rounded-full focus:bg-brun focus:px-4 focus:py-2 focus:text-creme">
           Aller au contenu
         </a>
         <Header />
         <main id="contenu">{children}</main>
         <Footer />
+        <Animations />
+        <RendezVous />
       </body>
     </html>
   );

@@ -1,10 +1,12 @@
 import Link from "next/link";
-import { SITE, METIERS } from "@/lib/site";
+import Image from "next/image";
+import { SITE } from "@/lib/site";
 import { OFFRES, SUIVIS, ETAPES } from "@/lib/offres";
 import { PROJETS } from "@/lib/projets";
 import { formatDate, getPosts } from "@/lib/blog";
 import { CallBanner, CallButton, LinkButton, OfferCard, ProjectCard, Section, Titre } from "@/components/site/ui";
 import { Desert, Etoile } from "@/components/site/desert";
+import EtoilesMetiers from "@/components/site/EtoilesMetiers";
 
 export const metadata = {
   title: { absolute: `Création de site internet à Lyon · ${SITE.name}` },
@@ -39,7 +41,7 @@ export default async function Home() {
     email: SITE.email,
     areaServed: "France",
     address: { "@type": "PostalAddress", addressLocality: SITE.city, addressCountry: "FR" },
-    founder: { "@type": "Person", name: SITE.name },
+    founder: { "@type": "Person", name: SITE.name, image: `${SITE.url}/marc-antoine.jpg` },
   };
 
   return (
@@ -79,19 +81,9 @@ export default async function Home() {
         </div>
       </Section>
 
-      <Section motif>
+      <Section id="pour-qui" motif className="scroll-mt-16">
         <Titre label="Pour qui">Des sites pensés pour votre métier</Titre>
-        <div className="mt-14 grid gap-6 md:grid-cols-2">
-          {METIERS.map(({ href, short, text }) => (
-            <Link key={href} href={href} className="group rounded-3xl border border-or/50 bg-creme p-8 transition-shadow hover:shadow-[0_20px_50px_-25px_rgba(143,61,29,0.55)]">
-              <h3 className="font-titre text-3xl font-bold">{short}</h3>
-              <p className="mt-3 leading-relaxed text-brun-doux">{text}</p>
-              <p className="mt-5 font-medium text-terre">
-                Ce que je propose <span className="inline-block transition-transform group-hover:translate-x-1" aria-hidden="true">→</span>
-              </p>
-            </Link>
-          ))}
-        </div>
+        <EtoilesMetiers className="mt-14" />
       </Section>
 
       <Section>
@@ -108,7 +100,47 @@ export default async function Home() {
         </div>
       </Section>
 
-      <Section motif>
+      <Section id="qui-je-suis" motif className="scroll-mt-16">
+        <div className="mx-auto grid max-w-5xl items-center gap-12 md:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] md:gap-16">
+          <div data-anim="projet" className="mx-auto w-full max-w-xs pb-3 pr-3 md:max-w-none">
+            <div className="relative">
+              <span data-anim-cadre aria-hidden="true" className="absolute inset-0 translate-x-3 translate-y-3 rounded-2xl border border-terre/45" />
+              <span data-anim-image className="relative block overflow-hidden rounded-2xl border border-or/50 bg-sable-fonce shadow-[0_18px_40px_-24px_rgba(43,27,23,0.55)]">
+                <Image
+                  src="/marc-antoine.jpg"
+                  alt="Portrait de Marc-Antoine Courbon"
+                  width={800}
+                  height={1000}
+                  sizes="(min-width: 768px) 380px, 320px"
+                  className="aspect-[4/5] w-full object-cover"
+                />
+              </span>
+            </div>
+          </div>
+          <div>
+            <Titre label="Qui je suis" className="md:text-left [&>div]:md:justify-start">
+              Un seul interlocuteur, <span className="accent">du premier appel</span> à la mise en ligne
+            </Titre>
+            <div className="mt-8 space-y-4 leading-relaxed text-brun-doux">
+              <p>
+                Je m'appelle Marc-Antoine, je suis développeur web à {SITE.city}. J'ai été indépendant avant d'être
+                développeur, puis je me suis formé à l'école 42 : je sais ce que c'est de gérer seul son activité, et
+                de ne pas avoir de temps à perdre avec son site.
+              </p>
+              <p>
+                Je viens aussi de la musique. J'y ai appris que tout est une question de rythme et d'équilibre, et
+                c'est ce que je cherche dans un site : qu'il soit beau, mais surtout simple à lire et à utiliser.
+              </p>
+              <p>
+                Pas d'agence, pas de sous-traitance : c'est moi que vous appelez, moi qui conçois et code votre site,
+                et moi qui réponds quand vous avez une question, même après la mise en ligne.
+              </p>
+            </div>
+          </div>
+        </div>
+      </Section>
+
+      <Section>
         <Titre label="Les offres" intro="Pas de devis mystère : vous savez ce que ça coûte avant même de m'appeler.">
           Des prix <span className="accent">affichés</span>
         </Titre>
@@ -118,18 +150,18 @@ export default async function Home() {
           ))}
         </div>
         <p className="mx-auto mt-10 max-w-2xl text-center leading-relaxed text-brun-doux">
-          Et après la mise en ligne, la formule <strong className="text-brun">{SUIVIS[0].name}</strong> à {SUIVIS[0].price} garde votre
-          site et votre fiche Google à jour.{" "}
+          Et après la mise en ligne, la <strong className="text-brun">Maintenance</strong> à {SUIVIS[0].price} garde votre site à
+          jour, et le <strong className="text-brun">Suivi</strong> à {SUIVIS[1].price} le fait progresser sur Google.{" "}
           <Link href="/offres" className="font-medium text-terre hover:underline">Toutes les offres</Link>
         </p>
       </Section>
 
-      <Section>
+      <Section motif>
         <Titre label="Comment ça se passe">
           Vous validez <span className="accent">à chaque étape</span>
         </Titre>
-        <ol className="relative mx-auto mt-14 max-w-3xl">
-          <span aria-hidden="true" className="absolute bottom-6 left-[1.4rem] top-6 border-l-2 border-dashed border-or/60" />
+        <ol data-anim="etapes" className="relative mx-auto mt-14 max-w-3xl">
+          <span data-anim-ligne aria-hidden="true" className="absolute bottom-6 left-[1.4rem] top-6 border-l-2 border-dashed border-or/60" />
           {ETAPES.map(({ title, text }, index) => (
             <li key={title} className="relative flex gap-6 pb-10 last:pb-0">
               <span className="relative z-10 flex h-12 w-12 flex-shrink-0 items-center justify-center">
@@ -146,7 +178,7 @@ export default async function Home() {
       </Section>
 
       {posts.length > 0 && (
-        <Section motif>
+        <Section>
           <Titre label="Le blog">Des réponses honnêtes à vos questions</Titre>
           <div className="mx-auto mt-14 grid max-w-4xl gap-6">
             {posts.map((post) => (

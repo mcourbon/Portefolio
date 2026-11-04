@@ -24,6 +24,18 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Le haut de page attend GSAP (components/site/Animations.js). Si le script n'arrive pas, tout réapparaît après 2,5 s. */
+.anim [data-desert-contenu] > div > * {
+  opacity: 0;
+  animation: secours-apparition 0s 2.5s forwards;
+}
+
+@keyframes secours-apparition {
+  to {
+    opacity: 1;
+  }
+}
+
 body {
   background: var(--color-sable);
   color: var(--color-brun);

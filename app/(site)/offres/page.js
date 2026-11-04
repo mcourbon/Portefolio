@@ -35,7 +35,12 @@ export default function Offres() {
           ))}
         </div>
         <div className="mt-12 flex flex-col items-center gap-3 text-center">
-          <p className="text-brun-doux">Vous hésitez entre deux offres ? On en parle {SITE.callLength}.</p>
+          <p className="max-w-2xl leading-relaxed text-brun-doux">
+            <strong className="text-brun">Paiement :</strong> un acompte de 30 % à la commande, le solde à la mise en
+            ligne. Le paiement en plusieurs fois est possible, on en parle pendant l'appel.
+          </p>
+          <p className="text-sm text-brun-doux">Prix nets : TVA non applicable, article 293 B du CGI.</p>
+          <p className="mt-4 text-brun-doux">Vous hésitez entre deux offres ? On en parle {SITE.callLength}.</p>
           <CallButton />
         </div>
       </Section>
@@ -43,11 +48,11 @@ export default function Offres() {
       <Section motif>
         <Titre
           label="Après la mise en ligne"
-          intro="Un site bien construit peut très bien vivre seul. Mais le référencement se gagne dans la durée : si vous voulez continuer à progresser sur Google sans y passer de temps, je peux m'en occuper chaque mois."
+          intro="Un site bien construit peut très bien vivre seul. La Maintenance le garde à jour et en bonne santé. Et comme le référencement se gagne dans la durée, le Suivi et l'Accompagnement le font progresser sur Google chaque mois."
         >
           Faire <span className="accent">vivre</span> votre site
         </Titre>
-        <div className="mx-auto mt-14 grid max-w-4xl gap-6 md:grid-cols-2">
+        <div className="mt-14 grid gap-6 lg:grid-cols-3">
           {SUIVIS.map((offre) => (
             <OfferCard key={offre.id} offre={offre} />
           ))}
@@ -60,7 +65,7 @@ export default function Offres() {
             <Titre label="Comment on travaille" className="lg:text-left [&>div]:lg:justify-start">
               Six étapes, <span className="accent">zéro surprise</span>
             </Titre>
-            <ol className="mt-10 space-y-6">
+            <ol data-anim="etapes" className="mt-10 space-y-6">
               {ETAPES.map(({ title, text }, index) => (
                 <li key={title} className="flex gap-4">
                   <span className="relative flex h-11 w-11 flex-shrink-0 items-center justify-center">

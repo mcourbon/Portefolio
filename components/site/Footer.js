@@ -23,7 +23,7 @@ export default function Footer() {
           <div>
             <p className="text-sm font-medium uppercase tracking-[0.2em] text-or">Le site</p>
             <ul className="mt-4 space-y-2">
-              {NAV.slice(1).map(({ href, label }) => (
+              {NAV.slice(1).filter((item) => !item.metiers).map(({ href, label }) => (
                 <li key={href}>
                   <Link href={href} className="hover:text-creme">{label}</Link>
                 </li>
