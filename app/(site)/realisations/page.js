@@ -4,7 +4,7 @@ import { CallBanner, PageHeader, ProjectCard, Section } from "@/components/site/
 export const metadata = {
   title: "Réalisations",
   description:
-    "Sites vitrines, boutique en ligne, démos : des exemples de sites que j'ai conçus et développés, avec ce qu'est vraiment chaque projet.",
+    "Sites vitrines, boutique en ligne, plateforme sur abonnement : des exemples de sites que j'ai conçus et développés, avec ce qu'est vraiment chaque projet.",
   alternates: { canonical: "/realisations" },
 };
 
@@ -19,7 +19,7 @@ export default function Realisations() {
           </>
         }
       >
-        <p>Sites clients, projets personnels et démos : chaque projet dit clairement ce qu'il est.</p>
+        <p>Sites clients, projets en cours, projets personnels et démos : chaque projet dit clairement ce qu'il est.</p>
       </PageHeader>
 
       <Section>

@@ -5,7 +5,7 @@ import { SITE } from "@/lib/site";
 // Google se sert de cette date (lastmod) si elle est fiable, et ignore changefreq et priority, donc on ne les met pas.
 const PAGES = {
   "/": "2026-11-04",
-  "/realisations": "2026-11-03",
+  "/realisations": "2026-11-05",
   "/offres": "2026-11-03",
   "/pour-qui/therapeutes": "2026-11-03",
   "/pour-qui/artistes-photographes": "2026-11-03",

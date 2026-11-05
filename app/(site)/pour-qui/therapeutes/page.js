@@ -135,8 +135,8 @@ export default function Therapeutes() {
       </Section>
 
       <Section motif>
-        <Titre label="Exemples">Des sites dans le bien-être</Titre>
-        <div className="mx-auto mt-14 grid max-w-4xl gap-x-8 gap-y-14 md:grid-cols-2">
+        <Titre label="Exemples">{exemples.length > 1 ? "Des sites dans le bien-être" : "Un site dans le bien-être"}</Titre>
+        <div className={`mx-auto mt-14 grid gap-x-8 gap-y-14 ${exemples.length > 1 ? "max-w-4xl md:grid-cols-2" : "max-w-xl"}`}>
           {exemples.map((projet) => (
             <ProjectCard key={projet.slug} projet={projet} />
           ))}
